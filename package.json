@@ -1,14 +1,14 @@
 {
-  "name": "udemy-cypress-testing-framework",
+  "name": "guru99-ecomerce-project-playwright-js",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "scripts": {},
+  "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "cypress": "^13.13.0"
+    "@playwright/test": "^1.45.1",
+    "@types/node": "^20.14.10"
   }
 }
