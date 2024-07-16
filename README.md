@@ -10,10 +10,13 @@ The purpose of this project is to perform E2E test automation for the [Guru99 EC
  - Browser: Chrome
 
 **In scope:**
+
 - E2E Web UI
 
 **Out of scope:**
+
 -API
+
 NOTE: GURU 99 does not provide any documentation for this project at all in comparason with other their projects like [GURU 99 Bank Project](https://www.guru99.com/live-selenium-project.html). Any attempts to derive information from the payloads from the Network tab do not prove successfull as the data is unclear.
 
 -Database
