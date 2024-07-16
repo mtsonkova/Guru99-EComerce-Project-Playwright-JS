@@ -17,7 +17,7 @@ The purpose of this project is to perform E2E test automation for the [Guru99 EC
 
 -API
 
-**NOTE:** GURU 99 does not provide any documentation for this project at all in comparason with other their projects like [GURU 99 Bank Project](https://www.guru99.com/live-selenium-project.html). Any attempts to derive information from the payloads from the Network tab do not prove successfull as the data is unclear.
+**NOTE:** GURU 99 does not provide any documentation for this project at all in comparason with other their projects like [GURU 99 Bank Project](https://www.guru99.com/live-selenium-project.html).
 
 -Database
 **NOTE:** Guru99 provides a password to access the database but only for a limited period of time. Therefore test cases that include or rely on database products manipulation are expected to fail after the provided password expires.
