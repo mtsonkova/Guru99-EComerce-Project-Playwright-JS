@@ -25,3 +25,10 @@ The purpose of this project is to perform E2E test automation for the [Guru99 EC
 **Test cases to automate:**
  - Manual test cases authored by me.
  - Test cases, provided by Guru99 as part of their timeboxed live project demo. Tests, related to database changes will be excluded.
+
+The challange with this project is that some sections, buttons, message placeholders are shared between different sections.
+For example:
+the header and footer are visible on all sections -> product catalog, shopping cart, etc.
+The 3 buttons ADD TO CART, Add to Wishlist, Add to Compare are visible on products catalogue as well as on product details pages.
+
+
