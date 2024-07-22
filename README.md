@@ -48,6 +48,6 @@ The purpose of this project is to perform E2E test automation for the [Guru99 EC
 The challange with this project is that some sections, buttons, message placeholders are shared between different sections.
 For example:
 the header and footer are visible on all sections -> product catalog, shopping cart, etc.
-The 3 buttons ADD TO CART, Add to Wishlist, Add to Compare are visible on products catalogue as well as on product details pages.
+The 3 buttons ADD TO CART, Add to Wishlist, Add to Compare are visible on products catalogue as well as on product details pages. That is why all common items are grouped in one class. All items from header and footer sections and the search box, are grouped in Navigations.js file.
 
 
