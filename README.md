@@ -8,7 +8,7 @@ The purpose of this project is to perform E2E test automation for the [Guru99 EC
  - Framework: Playwright
  - Platform: Windows
  - Browser: Chrome
- - Email : Mailtrap(https://mailtrap.io/)
+ - Email : [Mailtrap](https://mailtrap.io/)
    
 
 **In scope:**
