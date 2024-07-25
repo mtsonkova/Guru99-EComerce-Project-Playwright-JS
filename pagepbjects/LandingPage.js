@@ -6,8 +6,8 @@ class LandingPage{
 
     async getPageTitle() {
         return await this.title.textContent();
-    }
-
-    
+    }    
     
 }
+
+module.exports = {LandingPage};
