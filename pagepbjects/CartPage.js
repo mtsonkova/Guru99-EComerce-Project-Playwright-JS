@@ -1,26 +1,26 @@
-class CartPage{
+class CartPage {
     constructor(page) {
         this.page = page;
         //cart
+        this.allProductsInCart = page.locator('#shopping-cart-table tbody tr');
         this.productName = page.locator('h2 a');
         this.productSKU = page.locator('div.product-cart-sku span');
         this.productQTY = page.locator('input[title="Qty"]');
         this.productSubtotal = page.locator('product-cart-total span.price');
         this.deleteBtn = page.locator('.product-cart-remove a');
-        this.editBtn = page.locator('Edit');
         this.emptyCartBtn = page.locator('#empty_cart_button');
         this.updateShoppingCart = page.locator('button[title="Update Shopping Cart"]');
         this.continueShoppingBtn = page.locator('.btn-continue');
-        
+
         //discount section
         this.discountField = page.locator('#coupon_code');
-        this.applyBtn = page.getByRole('button', {name: 'Apply'});
-        
+        this.applyBtn = page.getByRole('button', { name: 'Apply' });
+
         //estimate shipping and tax
         this.selectCountry = page.locator('#country');
         this.stateProvince = page.locator('#region');
-        this.ZIP = page.locator('#postcode');
-        this.estimateBtn = page.getByRole('button', {name: 'Estimate'});
+        this.ZIPCode = page.locator('#postcode');
+        this.estimateBtn = page.getByRole('button', { name: 'Estimate' });
 
         //shopping cart totals table
         this.cartTotals = page.locator('#shopping-cart-totals-table');
@@ -29,7 +29,7 @@ class CartPage{
         this.checkoutMultipleAddresses = page.locator('.method-checkout-cart-methods-multishipping')
     }
 
-    async getProductName(){
+    async getProductName() {
         return await this.productName.textContent();
     }
 
@@ -44,6 +44,62 @@ class CartPage{
     async changeProductQty(number) {
         await this.productQTY.fill(number);
     }
+
+    async getProductSubtotal() {
+        return await this.productSubtotal.textContent();
+    }
+
+    async removeProductFromCart(productName) {
+        if (this.allProductsInCart.size() === 1) {
+            await this.deleteBtn.click();
+        } else {
+            for (let i = 0; i < this.allProductsInCart.size(); i++) {
+                let currentProduct = await this.allProductsInCart.nth(i)
+                let currentProductName = await currentProduct.getProductName();
+                if (currentProductName === productName) {
+                    await currentProduct.this.deleteBtn.click();
+                    break;
+
+                }
+            }
+        }
+    }
+
+    async removeAllProductsFromCart(){
+        await this.emptyCartBtn.click();
+    }
+
+    async updateCart() {
+        await this.updateShoppingCart.click();
+    }
+
+    async continueShopping() {
+        await this.continueShoppingBtn.click();
+    }
+
+    async enterDiscountCoupon(discountCode) {
+        await this.discountField.fill(discountCode);
+    } 
+
+    async clickBtnApply(){
+        await this.applyBtn.click();
+    }
+
+    async selectcCountry(countryName){
+        await this.selectCountry.selectOption(countryName);
+    }
+
+    async selectStateProvince(stateProvinceName) {
+        await this.selectStateProvince.fill(stateProvinceName);
+    }
+
+    async enterZIP(ZIP) {
+        await this.ZIPCode.fill(ZIP);
+    }
+
+    async clickEstimateBtn() {
+        await this.estimateBtn.click();
+    }
 }
 
-module.exports = {CartPage};
+module.exports = { CartPage };
