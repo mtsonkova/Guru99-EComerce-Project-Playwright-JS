@@ -100,6 +100,18 @@ class CartPage {
     async clickEstimateBtn() {
         await this.estimateBtn.click();
     }
+
+    async getGrandTotalPrice() {
+        return await this.grandTotalPrice.textContent();
+    }
+
+    async clickOnProceedToCheckoutBtn(){
+        await this.proceedToCheckoutBtn.click();
+    }
+
+    async clikcCheckoutMultipleAddresses(){
+        await this.checkoutMultipleAddresses.click();
+    }
 }
 
 module.exports = { CartPage };
