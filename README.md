@@ -99,22 +99,30 @@ public class TestCase1 {
 	  }	  
 	}
 ```
-**Some noob thoughts here**
-It is clear from the code above that they take a screenshot after filtering the products by Name (rows 85 to 92). However this only takses the screenshot. It does not prove clearly whether the devices are sorted in the expected order, thus making this case promne to giving false positive results. To know for sure whether this test case passes or fails one has to open the screenshot manually and see for himself. This complicates the test case as it involves manual approach for verification. 
-One way to avoid this is to have a second screenshot with the expected resut and compare it versus the actual image taken. However there are further implications:
-1) Selenium WebDrtiver cannot compare images directly. To do this, we need a third-party API, such as [AShot]([https://spurqlabs.com/image-comparison-using-java-selenium/#:~:text=Image%20comparison%20cannot%20be%20directly,us%20to%20compare%20two%20images](https://github.com/pazone/ashot).) to do this.
-2) The test case might fail due to the expected image no longer reflects the current state of the database (depending on when it is taken). Meaning there might be new devices added in the database which now show in the UI, or some divices might be hidden on a database level thus making them invisible to the customer.
+**Some thoughts on this here**
+It is clear from the code above, that they take a screenshot after filtering the products by Name (rows 85 to 92). However this only takes the screenshot. It does not prove clearly whether the devices are sorted in the expected order, thus making this case prone to giving false positive results. To know for sure whether case passes or fails, one has to open the screenshot manually and see for himself. This complicates the test case as it involves taking additional steps for verification. 
+One way to avoid this, is to have a second screenshot with the expected resut and compare it versus the actual image taken. However further issues might arise:
+1) Selenium WebDrtiver cannot compare images directly. To do this, we need a third-party API, such as [AShot]([https://spurqlabs.com/image-comparison-using-java-selenium/#:~:text=Image%20comparison%20cannot%20be%20directly,us%20to%20compare%20two%20images](https://github.com/pazone/ashot). Thus we increase the number of 3rd parties we depend on. 
+2) The test case might fail due to the expected image no longer reflects the current state of the database (depending on when it is taken). Meaning there might be new devices added in the database which now show in the UI, or some divices might be hidden at a database level, thus making them invisible to the customer.
 
 The image below shows devices available for purchase versus all devices from that brand in the database. Note that only one device is currently available for purchase:
 
 <img width="365" alt="devicesInDBandUI" src="https://github.com/user-attachments/assets/10608f3c-90ea-4857-8558-893f51057d98">
 
-
+**My approach**
 The first test case will be split to 3 separate test cases as follows:
-1. Check the title of the landing page.
+
+1. Check the title of the landing page. 
 2. Check the title of the mobile page.
-3. Sort products by name.
-4. Additional test case: sort products by price.
+3. Chek if the products are sorted by name following these steps:   
+	3.1. From the main page click on Mobile.
+   	3.2. Grab the names of all products andstore them in a sorted array (A - Z).
+   	3.3. Click on Sort By Name.
+   	3.4. Grab the names of all sorted products and store them in another array.
+   	3.5. Compare both arrays value by value.
+   	3.6. Assert they are equal.
+
+4.Additional test case: Sort products by price -> Repeat steps 3.1. to 3.6.
 
 ![Testcase-v2](https://github.com/user-attachments/assets/324720ad-b1ab-4ddb-aa67-00ea6e5d3060)
 This test case will be automated as is.
@@ -127,6 +135,7 @@ This test case will be split to 3 separate test cases:
 
 ![Testcase-v4](https://github.com/user-attachments/assets/b189596a-73ba-4736-8de6-0f72903f461c)
 This test case will be automated as is.
+
 ![Testcase-v5](https://github.com/user-attachments/assets/a213acce-c3e4-4161-a5af-39a983840c7a)
 This test case will be split to 2 separate test cases:
 1. Register a new account.
@@ -152,7 +161,13 @@ This test case will be automated as is.
 The challange with this project is that some sections, buttons, message placeholders are shared between different sections.
 For example:
 the header and footer are visible on all sections -> product catalog, shopping cart, etc.
-The 3 buttons ADD TO CART, Add to Wishlist, Add to Compare are visible on products catalogue as well as on product details pages. That is why all common items are grouped in one class. All items from header and footer sections and the search box, are grouped in NavigationElements.js file.
+The 3 buttons ADD TO CART, Add to Wishlist, Add to Compare are visible on products catalogue as well as on product details pages. 
+
+*utils folder content*
+Utils folder holds all common elements and shared functions accross the project.
+	**NavigationElements.js** - holds common items belonging to header and footer;
+ 	**ReusableProductsFunctions.js** - holds common actions, performed on products such as Add to Cart, Add to wishlist, Add to Compare
+
 
 
 
