@@ -30,7 +30,7 @@ The purpose of this project is to perform E2E test automation for the [Guru99 EC
  - Manual test cases authored by me.
  - Test cases, provided by Guru99 as part of their timeboxed live project demo. Tests, related to database changes will be excluded.
 
-##Test cases, provided by Guru99
+## Test cases, provided by Guru99
    
 ![Testcase-v1](https://github.com/user-attachments/assets/48550049-f777-48de-93b6-9feffcb2cd83)
 Solution, provided by Guru99
@@ -99,7 +99,7 @@ public class TestCase1 {
 	  }	  
 	}
 ```
-###**Some thoughts on this here**
+### **Some thoughts on this here**
 It is clear from the code above, that they take a screenshot after filtering the products by Name (rows 85 to 92). However this only takes the screenshot. It does not prove clearly whether the devices are sorted in the expected order, thus making this case prone to giving false positive results. To know for sure whether case passes or fails, one has to open the screenshot manually and see for himself. This complicates the test case as it involves taking additional steps for verification. 
 One way to avoid this, is to have a second screenshot with the expected resut and compare it versus the actual image taken. However further issues might arise:
 1) Selenium WebDrtiver cannot compare images directly. To do this, we need a third-party API, such as [AShot]([https://spurqlabs.com/image-comparison-using-java-selenium/#:~:text=Image%20comparison%20cannot%20be%20directly,us%20to%20compare%20two%20images](https://github.com/pazone/ashot). Thus we increase the number of 3rd parties we depend on. 
