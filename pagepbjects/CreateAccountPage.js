@@ -83,3 +83,5 @@ class CreateAccountPage {
         await this.clickOnRegisterBtn();
     }
 }
+
+module.exports = {CreateAccountPage};
