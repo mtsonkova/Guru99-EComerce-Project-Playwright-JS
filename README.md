@@ -33,6 +33,83 @@ The purpose of this project is to perform E2E test automation for the [Guru99 EC
    Below are the test cases, provided by Guru99
    
 ![Testcase-v1](https://github.com/user-attachments/assets/48550049-f777-48de-93b6-9feffcb2cd83)
+Solution, provided by Guru99
+
+```
+import java.io.File;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeTest;
+import org.testng.AssertJUnit;
+import java.util.concurrent.TimeUnit;
+import org.testng.annotations.*;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.*;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.*;
+import org.openqa.selenium.By;
+
+
+public class TestCase1 {
+	  private WebDriver driver;
+	  private String baseUrl;
+	  public int scc = 0;
+	  
+	  private StringBuffer verificationErrors = new StringBuffer();
+
+	  @BeforeMethod
+	@BeforeTest
+	public void setUp() throws Exception {
+	    driver = new FirefoxDriver();
+		// Step 1 Goto http://live.techpanda.org/
+	    baseUrl = "http://live.techpanda.org/";
+	    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+	  }
+	  @Test
+	  public void testDay1TestCase1() throws Exception {
+		
+	    driver.get(baseUrl); 
+		//Step 2. Verify Title of the page
+	    String demoSite  = driver.findElement(By.cssSelector("h2")).getText();
+	    System.out.println(demoSite);
+	    try {
+	      AssertJUnit.assertEquals("THIS IS DEMO SITE FOR   ", demoSite);
+	    } catch (Error e) {
+	      verificationErrors.append(e.toString());
+	    }	    
+	    
+
+	    // Step 3. Click on �MOBILE� menu
+	    driver.findElement(By.linkText("MOBILE")).click();	
+        // Step 5. In the list of all mobile , select �SORT BY� dropdown as �name�		
+	    new Select(driver.findElement(By.cssSelector("select[title=\"Sort By\"]"))).selectByVisibleText("Name");
+	    
+	    // Step 6. Verify all products are sorted by name
+		// this will take a screen shot of the manager's page after a successful login
+	    scc = (scc+1);
+		File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+		String png = ("C:\\Guru99 eCommerce Live Project\\Day01_TestCase1\\Mobile Products are sorted" + scc + ".png");
+		FileUtils.copyFile(scrFile, new File(png));
+	    }	
+	  
+	@AfterTest
+	public void tearDown() throws Exception {
+		driver.quit();
+	   
+	  }	  
+	}
+```
+**Some noob thoughts here**
+It is clear from the code above that they take a screenshot after filtering the products by Name (rows 85 to 92). However this only takses the screenshot. It does not prove clearly whether the devices are sorted in the expected order, thus making this case promne to giving false positive results. To know for sure whether this test case passes or fails one has to open the screenshot manually and see for himself. This complicates the test case as it involves manual approach for verification. 
+One way to avoid this is to have a second screenshot with the expected resut and compare it versus the actual image taken. However there are further implications:
+1) Selenium WebDrtiver cannot compare images directly. To do this, we need a third-party API, such as [AShot]([https://spurqlabs.com/image-comparison-using-java-selenium/#:~:text=Image%20comparison%20cannot%20be%20directly,us%20to%20compare%20two%20images](https://github.com/pazone/ashot).) to do this.
+2) The test case might fail due to the expected image no longer reflects the current state of the database (depending on when it is taken). Meaning there might be new devices added in the database which now show in the UI, or some divices might be hidden on a database level thus making them invisible to the customer.
+
+The image below shows devices available for purchase versus all devices from that brand in the database. Note that only one device is currently available for purchase:
+
+<img width="365" alt="devicesInDBandUI" src="https://github.com/user-attachments/assets/10608f3c-90ea-4857-8558-893f51057d98">
+
+
 The first test case will be split to 3 separate test cases as follows:
 1. Check the title of the landing page.
 2. Check the title of the mobile page.
