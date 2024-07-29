@@ -62,6 +62,10 @@ class CheckoutPage{
         this.creditCardRadioBtn = page.locator('#p_method_ccsave');
         this.cashMoneyRadioBtn = page.locator('#p_method_checkmo');
 
+        //Order Review
+        this.billingAddress = page.locator('#billing-progress-opcheckout');
+        
+
 
 
     }
