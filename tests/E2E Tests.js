@@ -1,6 +1,8 @@
 const { test, describe, beforeEach, afterEach, beforeAll, afterAll, expect } = require('@playwright/test');
 const { chromium } = require('playwright');
 
+const {LandingPage} = require('../pagepbjects/LandingPage');
+
 let browser;
 let context;
 let page;
@@ -28,8 +30,12 @@ describe('End to End Tests', async () => {
     });
 
 
-    test('Go to Landing page', async () => {
+    test('Go to Landing page and check title', async () => {
         await page.goto('host');
+       const landingPage = new LandingPage(page);
+       let title = await landingPage.getPageTitle();
+       await expect(title).toContain('This is demo site');
+        
         
     })
 
