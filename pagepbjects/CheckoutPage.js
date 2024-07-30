@@ -60,10 +60,24 @@ class CheckoutPage{
 
         //Payment method
         this.creditCardRadioBtn = page.locator('#p_method_ccsave');
-        this.cashMoneyRadioBtn = page.locator('#p_method_checkmo');git 
+        this.cashMoneyRadioBtn = page.locator('#p_method_checkmo');
+
+        //Credit card data
+        this.creditCardName = page.locator('#ccsave_cc_owner');
+        this.creditCardType = page.locator('#ccsave_cc_type');
+        this.creditcardNumber = page.locator('#ccsave_cc_number');
+        this.month = page.locator('#ccsave_expiration');
+        this.year = page.locator('#ccsave_expiration_yr');
+        this.ccv = page.locator('#ccsave_cc_cid');
 
         //Order Review
         this.billingAddress = page.locator('#billing-progress-opcheckout');
+        this.shippingMetod = page.locator('#shipping_method-progress-opcheckout');
+        this.shippingAddress = page.locator('#shipping-progress-opcheckout');
+        this.paymentMethod = page.locator('#payment-progress-opcheckout');
+        this.products = page.locator('table#checkout-review-table tbody tr');
+        this.btnPlaceOrder = page.getByRole('button', {name: 'Place Order'});
+        this.editCart = page.locator('#review-buttons-container a')
         
 
 
