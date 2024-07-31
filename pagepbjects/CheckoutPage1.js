@@ -1,5 +1,3 @@
-const { BillingGuestUserPage } = require("./BillingGuestUserPage");
-
 class CheckoutPage{
     constructor(page) {
         this.page = page;
@@ -13,8 +11,25 @@ class CheckoutPage{
         // Checkout as guest or register
         this.checkoutAsGuest = page.locaotr('#login:guest');
         this.registerAndCheckout = page.locator('#login:register');
-        this.continueBtn = page.getByRole('button', {name: 'Continue'});
+        this.continueBtn = page.locator('#onepage-guest-register-button');
 
+        //Billing information
+        this.firstName = page.locator('#billing:firstname');
+        this.middleName = page.locator('#billing:middlename');
+        this.lastName = page.locator('#billing:lastname');
+        this.company = page.locator('#billing:company');
+        this.email = page.locator('#billing:email');
+        this.address = page.locator('#billing:street1');
+        this.secondAddress = page.locator('#billing:street2');
+        this.city = page.locator('#billing:city');
+        this.stateOrProvince = page.locator('#billing:region_id');
+        this.zipPostcode = page.locator('#billing:postcode');
+        this.country = page.locator('#billing:country_id');
+        this.phone = page.locator('#billing:telephone');
+        this.fax = page.locator('#billing:fax');
+        this.shipToAddressCheckbox = page.locator('#billing:use_for_shipping_yes');
+        this.shipToDifferentAddresCheckbox = page.locator('billing:use_for_shipping_no');
+        this.billingContinueBtn = page.getByRole('button', {name:'Continue'});
         
         //Register user during purchase
         this.password = page.locator('#billing:customer_password');
@@ -77,7 +92,7 @@ class CheckoutPage{
 
     async selectCheckoutAsGuest() {
         await this.checkoutAsGuest.check();
-        return new BillingGuestUserPage(page);
+        await this.continueBtn.click();
     }
 
     async selectRegisterAndCheckout() {
