@@ -21,6 +21,7 @@ class BillingGuestUserPage{
        
     }
 
+    // methods to enter data in fields
     async enterFirstName(firstName) {
         await this.firstName.fill(firstName);
     }
@@ -80,6 +81,9 @@ class BillingGuestUserPage{
     async clickBtnContinue() {
         await this.continueBtn.click();
     }
+
+    //methods to extract data from fields
+    
 }
 
 module.exports = {BillingGuestUserPage};

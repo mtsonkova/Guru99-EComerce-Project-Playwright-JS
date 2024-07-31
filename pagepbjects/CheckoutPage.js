@@ -13,35 +13,15 @@ class CheckoutPage{
         // Checkout as guest or register
         this.checkoutAsGuest = page.locaotr('#login:guest');
         this.registerAndCheckout = page.locator('#login:register');
-        this.continueBtn = page.getByRole('button', {name: 'Continue'});
-
+       
+        // this.continueBtn = page.getByRole('button', {name: 'Continue'});
+        this.btnContinue =  page.locator('button:visible :text("Continue")');
         
-        //Register user during purchase
-        this.password = page.locator('#billing:customer_password');
-        this.confirmPassword = page.locator('#billing:confirm_password');
-
-        //Shipping information form
-        this.shippingFirstName = page.locator('#shipping:firstname');
-        this.shippingMiddleName = page.locator('#shipping:middlename');
-        this.shippingLastName = page.locator('#shipping:lastname');
-        this.shippingCompany = page.locator('#shipping:company');
-        this.shippingAddress = page.locator('#shipping:street1');
-        this.shippingAddress2 = page.locator('#shipping:street2');
-        this.shippingCity = page.locator('#shipping:city');
-        this.shippingStateProvince = page.locator('#shipping:region_id');
-        this.shippingZIPOrPostal = page.locator('#shipping:postcode');
-        this.shippingCountry = page.locator('#shipping:country_id');
-        this.shippingPhone = page.locator('#shipping:telephone');
-        this.shippingFax = page.locator('#shipping:fax');
-
-        this.useBillingAddressCheckbox = page.locator('#shipping:same_as_billing');
-        this.shippingContinueBtn = page.getByRole('button', {name:'Continue'});
-
+        //shipping information
+        this.shippingInformation = new ShippingInformatonFormPage(this.page);
+       
         //Shipping method
         this.tax = page.locator('dd label span.price');
-
-
-        this.btnContinue = page.locatore('button:visible :text("Continue")');
 
         //Payment method
         this.creditCardRadioBtn = page.locator('#p_method_ccsave');
@@ -62,11 +42,7 @@ class CheckoutPage{
         this.paymentMethod = page.locator('#payment-progress-opcheckout');
         this.products = page.locator('table#checkout-review-table tbody tr');
         this.btnPlaceOrder = page.getByRole('button', {name: 'Place Order'});
-        this.editCart = page.locator('#review-buttons-container a')
-        
-
-
-
+        this.editCart = page.locator('#review-buttons-container a');
     }
 
     async logIn(email, password) {
@@ -77,11 +53,11 @@ class CheckoutPage{
 
     async selectCheckoutAsGuest() {
         await this.checkoutAsGuest.check();
-        return new BillingGuestUserPage(page);
+        return new BillingGuestUserPage(this.page);
     }
 
     async selectRegisterAndCheckout() {
         await this.registerAndCheckout.check();
-        await this.continueBtn.click();
+       return new BillingWithUserRegistrationPage(this.page);
     }
 }
