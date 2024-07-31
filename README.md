@@ -159,6 +159,7 @@ This test case will be automated as is.
 ## Project Notes
 
 There are multiple workflows to test in this project. Some of them are:
+
 **Flow 1**: Landing page -> Products Page -> Add 1 or more products to shopping cart -> Checkout -> Checkout as Guest -> Billing address same as shipping address -> Payment Information check/money order -> Order Review -> Place Order 
 
 **Flow 2**: Landing page -> Products Page -> Add 1 or more products to shopping cart -> Checkout -> Checkout as Guest -> Billing address same as shipping address -> Payment Information check/money order -> Order Review -> Edit your cart -> Add 1 or more products to shopping cart -> Checkout -> Checkout as Guest -> Billing address same as shipping address -> Payment Information check/money order -> Order Review -> Place Order
