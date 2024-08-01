@@ -168,7 +168,7 @@ There are multiple workflows to test in this project. Some of them are:
 
 **Flow 4**: Landing page -> Account -> Login -> Products Page -> Add products to compare -> Enter compare list -> Add to cart compared product -> Checkout -> Billing Address different from shipping address -> Payment information Credit card -> Order Review -> Place Order
 
-**Flow 5**: Landing page -> Account -> Register -> Products Page -> Add products to compare -> Enter compare list -> Add product to wishlist -> Enter wish list -> Add 
+**Flow 5**: Landing page -> Account -> Login -> Products Page -> Add products to compare -> Enter compare list -> Add product to wishlist -> Enter wish list -> Add 
 product to cart -> Checkout -> Billing Address same shipping address -> Payment information check/money order -> Order Review -> Place Order
 
 ---
