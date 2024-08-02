@@ -33,4 +33,24 @@ class HeaderElements{
     async clickOnMyAccount() {
         await this.headerAccount.click();        
     }
+
+    async clickOnMyWishList(){
+        await this.myWishlist.click();
+    }
+
+    async clickOnMyCart(){
+        await this.myCart.click();
+    }
+
+    async clickOnCheckout(){
+        await this.checkout.click();
+    }
+
+    async clickOnRegister() {
+        await this.register.click();
+    }
+
+    async clickOnLogIn() {
+        await this.logIn.click();
+    }
 }
