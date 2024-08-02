@@ -1,10 +1,6 @@
 class NavigationElements{
     constructor(page) {
         this.page = page;
-        this.mobile = page.locator('.nav-1');
-        this.tv = page.locator('.nav-2');
-        this.account = page.locator('#header-account .label');
-        this.cartBtn = page.locator('#header-cart .label');
         this.comparedItemsList = page.locator('ol#recently-compared-items');
         this.searchBox = page.locator('.search');
         this.newsLetterBox = page.locator('input[type="email"]');
@@ -17,22 +13,6 @@ class NavigationElements{
         this.ordersAndReturns = page.getByRole('a', {name : 'Orders and Returns'})
         //this.btnAccount = page.locator('.skip-account span.label');     
         this.successMsgPlaceholder = page.locator('li.success-msg');   
-    }
-
-    async clickOnMobile() {
-        await this.mobile.click();
-    }
-
-    async clickOnTV() {
-        await this.tv.click();        
-    }
-    
-    async clickOnAccount() {
-        await this.account.click();
-    }
-
-    async clickOnCart() {
-        await this.cartBtn.click();
     }
 
     async clickOnComparedItemsList() {
