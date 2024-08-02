@@ -61,3 +61,5 @@ class CheckoutPage{
        return new BillingWithUserRegistrationPage(this.page);
     }
 }
+
+module.exports = {CheckoutPage};

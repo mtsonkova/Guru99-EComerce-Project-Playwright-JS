@@ -1,4 +1,4 @@
-class ShippingInformatonFormPage{
+class ShippingInformatonPage{
     constructor(page) {
         //Shipping information form
         this.page = page;
@@ -17,3 +17,5 @@ class ShippingInformatonFormPage{
         this.btnContinue =  page.locator('button:visible :text("Continue")');
     }
 }
+
+module.exports = {ShippingInformatonPage};

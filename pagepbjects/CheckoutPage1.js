@@ -100,3 +100,4 @@ class CheckoutPage{
         await this.continueBtn.click();
     }
 }
+

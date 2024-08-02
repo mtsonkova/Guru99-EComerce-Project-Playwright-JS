@@ -1,6 +1,6 @@
 const { BillingGuestUserPage } = require("./BillingGuestUserPage");
 
-class BillingWithUserRegistrationPage extends BillingGuestUserPage{
+class BillingUserRegistrationPage extends BillingGuestUserPage{
     constructor(page) {
         super(page);
 
@@ -17,3 +17,5 @@ class BillingWithUserRegistrationPage extends BillingGuestUserPage{
         await this.confirmPassword.fill(pass);
     }
 }
+
+module.exports = {BillingUserRegistrationPage};
