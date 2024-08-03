@@ -18,17 +18,19 @@ class ProductInformationPage{
     }
 
     async getProductTitle() {
-        return this.productTitle.textContent();
+       return await this.productTitle.textContent();
     }
 
     async getProductPrice() {
-        let price = this.productPrice.textContent();
-        return Number(price.slice(1));
+        let price = await this.productPrice.textContent();
+        return await Number(price.slice(1));
     }
 
     async getProductReviewsNum(){
-        let tokens = this.productReviews.split('');
+        let tokens = await this.productReviews.textContent().split('');
         let reviewsNum = Number(tokens[0]);
         return reviewsNum;
     }
+
+
 }
