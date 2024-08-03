@@ -15,6 +15,20 @@ class ProductInformationPage{
         this.reviewsSection = page.getByText('Reviews');
         this.reviewsDT = page.locator('dt');
         this.reviewsDD = page.locator('dd');
+    }
 
+    async getProductTitle() {
+        return this.productTitle.textContent();
+    }
+
+    async getProductPrice() {
+        let price = this.productPrice.textContent();
+        return Number(price.slice(1));
+    }
+
+    async getProductReviewsNum(){
+        let tokens = this.productReviews.split('');
+        let reviewsNum = Number(tokens[0]);
+        return reviewsNum;
     }
 }
