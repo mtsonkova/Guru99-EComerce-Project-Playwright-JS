@@ -15,6 +15,13 @@ class ProductInformationPage{
         this.reviewsSection = page.getByText('Reviews');
         this.reviewsDT = page.locator('dt');
         this.reviewsDD = page.locator('dd');
+
+        // review form
+        this.productQuality = page.locator('input[type="radio"]');
+        this.reviewText = page.locator('#review_field');
+        this.reviewSummary = page.locator('#summary_field');
+        this.nickName = page.locator('#nickname_field');
+        this.submitReviewBtn = page.getByRole('button', {name: 'Submit Review'});
     }
 
     async getProductTitle() {
@@ -30,6 +37,14 @@ class ProductInformationPage{
         let tokens = await this.productReviews.textContent().split('');
         let reviewsNum = Number(tokens[0]);
         return reviewsNum;
+    }
+
+    async clickOnAddYourReviewBtn() {
+        await this.addYourReviewBtn.click();
+    }
+
+    async getProductAvailability() {
+        return await this.productAvailability.textContent();
     }
 
 
