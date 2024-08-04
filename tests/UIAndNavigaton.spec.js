@@ -1,4 +1,4 @@
-const { desribe, test, expect, beforeAll, afterAll, beforeEach, aftetrEach } = require('@playwright/test');
+const { describe, test, expect, beforeAll, afterAll, beforeEach, aftetrEach } = require('@playwright/test');
 const { chromium } = require('playwright');
 
 const { LandingPage } = require('../pagepbjects/LandingPage');
@@ -11,7 +11,7 @@ let context;
 let page;
 
 
-describe('UI and navigation tests', async () => {
+describe('UI and navigation tests', async() => {
     beforeAll(async () => {
         browser = await chromium.launch();
     });
