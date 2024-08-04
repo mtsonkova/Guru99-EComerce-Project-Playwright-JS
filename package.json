@@ -4,9 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test" : "npx playwright test /tests/E2ETests.spec.js",
-    "headed" : "npx playwright test /tests/E2ETests.spec.js --headed",
-    "debug" : "npx playwright test /tests/E2ETests.spec.js --debug"
+    "test" : "npx playwright test /tests/e2etest.spec.js",     
+    "headed" : "npx playwright test /tests/e2etests.spec.js --headed",
+    "debug" : "npx playwright test /tests/e2etests.spec.js --debug",
+    "testUI" : "npx playwright test /tests/ui-navigation.spec.js",
+    "headedUI" : "npx playwright test /tests/ui-navigation.spec.js --headed",
+    "debugUI" : "npx playwright test /tests/ui-navigation.spec.js --debug"
+
   },
   "keywords": [],
   "author": "",
