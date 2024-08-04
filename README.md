@@ -116,10 +116,15 @@ The first test case will be split to 3 separate test cases as follows:
 2. Check the title of the mobile page. - **done**
 3. Chek if the products are sorted by name following these steps:   
 	3.1. From the main page click on Mobile.
+   
    	3.2. Grab the names of all products andstore them in a sorted array (A - Z).
+   
    	3.3. Click on Sort By Name.
+   
    	3.4. Grab the names of all sorted products and store them in another array.
+   
    	3.5. Compare both arrays value by value.
+   
    	3.6. Assert they are equal.
 
 4.Additional test case: Sort products by price -> Repeat steps 3.1. to 3.6.
