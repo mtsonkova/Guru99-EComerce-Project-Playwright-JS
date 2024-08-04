@@ -33,6 +33,7 @@ describe('End to End Tests', async () => {
     describe('Titles and messages', async () => {
         beforeEach(async () => {
             await page.goto('/');
+            
         });
 
         test('Go to Landing page and check title', async () => {
@@ -45,9 +46,18 @@ describe('End to End Tests', async () => {
             const headers = new HeaderNav(page);
             await headers.clickOnMobile();
             let mobileTitle = await headers.getTitle();
-            await expecy(mobileTitle).toEqual('Mobile');
+            await expect(mobileTitle).toEqual('Mobile');
 
         });
+
+        test('Check title on empty cart', async() => {
+            await page.goto(navigation.myCart);
+            const headers = new HeaderNav(page);
+            let emptyCartTitle = await headers.getTitle();
+            await expect(emptyCartTitle).toEqual('Shopping Cart is Empty');
+        });
+             
+       
 
     });
     describe('Guest User actions', async () => {
