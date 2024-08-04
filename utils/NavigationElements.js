@@ -52,4 +52,4 @@ class NavigationElements{
     }    
 }
 
-module.exports = {NavigatioElements};
+module.exports = {NavigationElements};

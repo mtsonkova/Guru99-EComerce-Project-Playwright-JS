@@ -9,7 +9,6 @@ class ProductInformationPage{
         this.productAvailability = this.productInfo.locator('.availability');
         this.productShortDescription = this.productInfo.locator('div.std');
         this.qty = page.locator('#qty');
-        this.addToCartBtn = page.getByRole('button', {name: 'Add to Cart'});
         this.descriptionBtn = page.getByText('Description');
         this.descriptionText = page.locator('tab-content div.std');
         this.reviewsSection = page.getByText('Reviews');
@@ -49,3 +48,5 @@ class ProductInformationPage{
 
 
 }
+
+module.exports = {ProductInformationPage};

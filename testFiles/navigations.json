@@ -1,0 +1,7 @@
+{
+    "mobile" : "http://live.techpanda.org/index.php/mobile.html",
+    "tv" : "http://live.techpanda.org/index.php/tv.html",
+    "myAccount" : "http://live.techpanda.org/index.php/customer/account/login/",
+    "myCart": "http://live.techpanda.org/index.php/checkout/cart/",
+    "register": "http://live.techpanda.org/index.php/customer/account/create/"
+}

@@ -1,15 +1,16 @@
-class HeaderElements{
+class HeaderNav{
+    
     constructor(page) {
         this.page = page;
         this.mobile = page.locator('.nav-1');
         this.tv = page.locator('.nav-2');
         this.account = page.locator('#header-account .label');
         this.headerAccount = page.locator('#header-account .links')
-        this.myAccount = headerAccount.getByText('My account');
-        this.myWishlist = headerAccount.getByText('My Wishlist');
-        this.myCart = headerAccount.getByText('My Cart');
-        this.checkout = headerAccount.getByText('Checkout');
-        this.register = headerAccount.getByText('Register');
+        this.myAccount = this.headerAccount.getByText('My account');
+        this.myWishlist = this.headerAccount.getByText('My Wishlist');
+        this.myCart = this.headerAccount.getByText('My Cart');
+        this.checkout = this.headerAccount.getByText('Checkout');
+        this.register = this.headerAccount.getByText('Register');
         this.logIn = this.headerAccount.getByText('Log In');
         this.cartBtn = page.locator('#header-cart .label');
     }
@@ -23,7 +24,7 @@ class HeaderElements{
     }
     
     async clickOnAccount() {
-        await this.account.click();
+        await this.headerAccount.click();
     }
 
     async clickOnCart() {
@@ -31,7 +32,7 @@ class HeaderElements{
     }
 
     async clickOnMyAccount() {
-        await this.headerAccount.click();        
+        await this.myAccount.click();        
     }
 
     async clickOnMyWishList(){
@@ -53,4 +54,9 @@ class HeaderElements{
     async clickOnLogIn() {
         await this.logIn.click();
     }
+
+    async getTitle(){
+        return await this.page.locator('h1').textContent();
+    }
 }
+module.exports = {HeaderNav};
