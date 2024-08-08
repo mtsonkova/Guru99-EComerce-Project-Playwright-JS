@@ -1,7 +1,9 @@
 class ProductsPage {
     constructor(page) {
         this.page = page;
-        this.devices = page.locator('div ul.products-grid li.item');
+        this.devices = page.getByRole('listitem').filter({
+            has: this.page.locator('div.product-info')
+        });
         this.sortBy = page.locator('Selector');
     }
 
@@ -28,6 +30,10 @@ class ProductsPage {
         }
     }
 
+    async getAllDevices() {
+        return await this.devices;
+    }
+
     //accepts array of strings
     async addMultipleProductsToCart(names) {
         await this.devices.forEach(device => {
@@ -38,30 +44,40 @@ class ProductsPage {
         });
     }
 
-    async getAllDevices() {
-        return this.devices;
-    }
-
     async getAllDevicesPrice() {
 
         let products = [];
-        let device = {};
-        console.log(this.devices);
-        for (let i = 0; i < this.devices.count(); i++) {
-            let currentDevice = this.devices.nth(i);
-            let currentName = currentDevice.locator('h2').textContent();
-            let currentPrice = currentDevice.locator('.price').textContent().slice(1);
+    
+
+        let cards = await this.getAllDevices();
+        let num = await cards.count();
+
+
+        for (let i = 0; i < num; i++) {
+            let device = {};
+
+            let currentDevice = await cards.nth(i);
+            let currentName = await currentDevice.locator('h2').textContent();
+            let currentPrice = 0;
+            if (currentName === 'Samsung Galaxy') {
+                currentPrice = await currentDevice.locator('p.special-price span.price').textContent();
+                currentPrice = currentPrice.split('$')[1];
+            } else {
+                currentPrice = await currentDevice.locator('.price').textContent();
+                currentPrice = currentPrice.slice(1);                
+            }
 
             device.name = currentName;
-            device.price = Number(currentPrice);
-            products.push(device);
+                device.price = Number(currentPrice);
+                products.push(device);
+           
         }
 
         return products;
     }
+}
 
 
-}
-}
+
 
 module.exports = { ProductsPage }
