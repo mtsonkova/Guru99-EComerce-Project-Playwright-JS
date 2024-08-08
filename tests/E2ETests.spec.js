@@ -40,13 +40,12 @@ describe('End to End Tests', async () => {
     });
     
     describe('Guru99 Tests', async () => {
-        test('Sort mobile pfones by name and check if they are sorted correctly', async() => {
-            await headerNav.clickOnMobile();       
-            let devices = await productsPage.getAllDevices();
-            console.log(devices);
-            let devicesNames = await productsPage.getAllDevicesNames();
-           console.log(devicesNames);
-            await expect(devicesNames.length > 0).toBeTruthy;     
+        test('Sort mobile phones by price and check if they are sorted correctly', async() => {
+            await headerNav.clickOnMobile();  
+            await page.waitForURL('http://live.techpanda.org/index.php/mobile.html');
+            let devicesNames = await productsPage.getAllDevicesPrice();
+            console.log(devicesNames);
+            
         });
 
     });

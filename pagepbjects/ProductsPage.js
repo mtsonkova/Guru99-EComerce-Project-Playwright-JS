@@ -1,7 +1,7 @@
 class ProductsPage {
     constructor(page) {
         this.page = page;
-        this.devices = page.locator('div ul.products-grid');
+        this.devices = page.locator('div ul.products-grid li.item');
         this.sortBy = page.locator('Selector');
     }
 
@@ -42,10 +42,26 @@ class ProductsPage {
         return this.devices;
     }
 
-    async getAllDevicesNames() {
-        let devicesNames = await this.devices.locator('li h2 a').allTextContents();
-        return await devicesNames;
+    async getAllDevicesPrice() {
+
+        let products = [];
+        let device = {};
+        console.log(this.devices);
+        for (let i = 0; i < this.devices.count(); i++) {
+            let currentDevice = this.devices.nth(i);
+            let currentName = currentDevice.locator('h2').textContent();
+            let currentPrice = currentDevice.locator('.price').textContent().slice(1);
+
+            device.name = currentName;
+            device.price = Number(currentPrice);
+            products.push(device);
+        }
+
+        return products;
     }
+
+
+}
 }
 
 module.exports = { ProductsPage }
