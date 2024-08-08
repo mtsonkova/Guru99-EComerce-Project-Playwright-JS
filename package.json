@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test" : "npx playwright test /tests/e2etest.spec.js",     
+    "test" : "npx playwright test ./tests/e2etests.spec.js", 
     "headed" : "npx playwright test /tests/e2etests.spec.js --headed",
     "debug" : "npx playwright test /tests/e2etests.spec.js --debug",
     "testUI" : "npx playwright test /tests/ui-navigation.spec.js",

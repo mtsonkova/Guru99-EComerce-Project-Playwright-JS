@@ -2,9 +2,9 @@ class ReusableProductsFunctions {
     constructor(page) {
         this.page = page;
         this.sort = page.locator('select');
-        this.btnAddToCart = page.getByRole(button, {name : 'Add to Cart'});
-        this.btnAddToWishlist = page.getByRole(a, {name : 'Add to Wishlist'});
-        this.btnAddToCompare = page.getByRole(a, {name : 'Add to Compare'});
+        this.btnAddToCart = page.getByRole('button', {name : 'Add to Cart'});
+        this.btnAddToWishlist = page.getByRole('a', {name : 'Add to Wishlist'});
+        this.btnAddToCompare = page.getByRole('a', {name : 'Add to Compare'});
     }
 
     async sortByPostion(){
