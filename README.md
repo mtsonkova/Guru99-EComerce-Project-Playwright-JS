@@ -115,7 +115,7 @@ The first test case will be split to 3 separate test cases as follows:
 
 1. Check the title of the landing page. - **done**
 2. Check the title of the mobile page. - **done**
-3. Chek if the products are sorted by name following these steps:   
+3. Chek if the products are sorted by name following these steps: **done**  
 	3.1. From the main page click on Mobile.
    
    	3.2. Grab the names of all products andstore them in a sorted array (A - Z).
