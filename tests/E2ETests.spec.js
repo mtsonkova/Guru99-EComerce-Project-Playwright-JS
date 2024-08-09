@@ -42,7 +42,7 @@ describe('End to End Tests', async () => {
     });
     
     describe('Guru99 Tests', async () => {
-        test.only('Sort mobile phones by price and check if they are sorted correctly', async() => {
+        test('Sort mobile phones by price ascending and check if they are sorted correctly', async() => {
             await headerNav.clickOnMobile();  
             await page.waitForURL('http://live.techpanda.org/index.php/mobile.html');
             let devices = await productsPage.getAllDevicesWithNameAndPrice();
@@ -58,14 +58,21 @@ describe('End to End Tests', async () => {
             
         });
 
-        test('Sort mobile phones name and check if they are sorted correctly', async() => {
+        test('Sort mobile phones by name from A to Z and check if they are sorted correctly', async() => {
             await headerNav.clickOnMobile();  
             await page.waitForURL('http://live.techpanda.org/index.php/mobile.html');
-            await productsPage.sortByOption('http://live.techpanda.org/index.php/mobile.html?dir=asc&order=price');
+            let devices = await productsPage.getAllDevicesWithNameAndPrice();
+            let sortedDevices = devices.sort((a, b) => (a.name).localeCompare(b.name));
+
+            await productsPage.sortByOption('http://live.techpanda.org/index.php/mobile.html?dir=asc&order=name');
            
-            let sortedDevices = await productsPage.getAllDevicesWithNameAndPrice();
+            await page.waitForURL('http://live.techpanda.org/index.php/mobile.html?dir=asc&order=name')
            
-            console.log(sortedDevices);
+           let sortedDevicesByName = await productsPage.getAllDevicesWithNameAndPrice();
+           
+           let result = productFunctions.compareTwoProductArrays(sortedDevices, sortedDevicesByName);
+            
+           expect(result).toBeTruthy();
         });
     });
 
