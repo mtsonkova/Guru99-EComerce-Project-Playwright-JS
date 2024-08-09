@@ -23,6 +23,7 @@ The purpose of this project is to perform E2E test automation for the [Guru99 EC
 **Out of scope:**
 
 -API
+-Credit card payment as it does not work
 
 **NOTE:** GURU 99 does not provide any documentation for this project at all in comparason with other their projects like [GURU 99 Bank Project](https://www.guru99.com/live-selenium-project.html).
 
@@ -172,7 +173,7 @@ There are multiple workflows to test in this project. Some of them are:
 
 **Flow 3**: Landing page -> Products Page -> Add 1 or more products to Wishlist -> User sent to Login or Register Screen -> Login -> Enter wishlist and add product to shopping cart -> Checkout -> Billing address same as shipping address -> Payment Information check/money order -> Order Review -> Place Order
 
-**Flow 4**: Landing page -> Account -> Login -> Products Page -> Add products to compare -> Enter compare list -> Add to cart compared product -> Checkout -> Billing Address different from shipping address -> Payment information Credit card -> Order Review -> Place Order
+**Flow 4**: Landing page -> Account -> Login -> Products Page -> Add products to compare -> Enter compare list -> Add to cart compared product -> Checkout -> Billing Address different from shipping address -> Payment information Payment Information check/money order -> Order Review -> Place Order
 
 **Flow 5**: Landing page -> Account -> Login -> Products Page -> Add products to compare -> Enter compare list -> Add product to wishlist -> Enter wish list -> Add 
 product to cart -> Checkout -> Billing Address same shipping address -> Payment information check/money order -> Order Review -> Place Order
