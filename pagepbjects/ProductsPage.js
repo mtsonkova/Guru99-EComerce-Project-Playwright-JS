@@ -4,12 +4,13 @@ class ProductsPage {
         this.devices = page.getByRole('listitem').filter({
             has: this.page.locator('div.product-info')
         });
-        this.sortBy = page.locator('Selector');
+        this.sortBy = page.locator('div.sort-by select').first();
     }
 
 
-    async sortByOption(option) {
-        await this.sortBy.selectOption({ value: option });
+    async sortByOption(text) {
+        await this.sortBy.selectOption(text);     
+        this.sortBy.waitFor();  
     }
 
     async addAllProductsToCart() {
@@ -44,7 +45,7 @@ class ProductsPage {
         });
     }
 
-    async getAllDevicesPrice() {
+    async getAllDevicesWithNameAndPrice() {
 
         let products = [];
     
