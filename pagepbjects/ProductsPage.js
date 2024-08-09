@@ -1,3 +1,5 @@
+const { hasUncaughtExceptionCaptureCallback } = require("process");
+
 class ProductsPage {
     constructor(page) {
         this.page = page;
@@ -42,17 +44,16 @@ class ProductsPage {
 
         let devices = await this.getAllDevices();
         let num = await devices.count();
-
-        for (let i = 0; i < num; i++) {
+        for(let i = 0; i < num; i++) {
             let currentDevice = await devices.nth(i);
-            let currentDeviceName = await currentDevice.locator('li h2 a').textContent();
-
-            if (currentDeviceName === deviceName) {
+            let currentName = await currentDevice.locator('h2 a').textContent();
+            if(currentName === deviceName) {
                 return currentDevice;
             }
         }
+        return 'no device found'
 
-        return 'No such device';
+      
     }
 
     //accepts array of strings

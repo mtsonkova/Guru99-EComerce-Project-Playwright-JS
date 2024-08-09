@@ -86,8 +86,9 @@ describe('End to End Tests', async () => {
             let productPrice = await device.locator('.price').textContent();
             productPrice = Number(productPrice.slice(1));
 
-            await page.locator('a: text("Sony Xperia")').click();
-            let priceFromDetailsPage = productInformationPage.getProductPrice();
+            await page.locator('a:has-text("Sony Xperia")').click();
+            let priceFromDetailsPage = await productInformationPage.getProductPrice();
+           
             expect(productPrice).toEqual(priceFromDetailsPage);
 
         })
