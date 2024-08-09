@@ -24,6 +24,7 @@ The purpose of this project is to perform E2E test automation for the [Guru99 EC
 
 -API
 -Credit card payment as it does not work
+- register new account section. All tests will be automated with already created account.
 
 **NOTE:** GURU 99 does not provide any documentation for this project at all in comparason with other their projects like [GURU 99 Bank Project](https://www.guru99.com/live-selenium-project.html).
 
@@ -144,9 +145,7 @@ This test case will be split to 3 separate test cases:
 This test case will be automated as is.
 
 ![Testcase-v5](https://github.com/user-attachments/assets/a213acce-c3e4-4161-a5af-39a983840c7a)
-This test case will be split to 2 separate test cases:
-1. Register a new account.
-2. Login with the newly registered account, add products to the wishlist and send it to email. 
+This test case will be automated using an existing account.
 
 ![Testcase-v6](https://github.com/user-attachments/assets/ec8ae193-1eca-4837-94e1-d66cdb4db7fe)
 This test case will be automated as is.
