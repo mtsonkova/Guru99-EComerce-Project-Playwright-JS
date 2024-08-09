@@ -9,6 +9,7 @@ The purpose of this project is to perform E2E test automation for the [Guru99 EC
  - Platform: Windows
  - Browser: Chrome
  - Email : [Mailtrap](https://mailtrap.io/)
+ - Reporting Tool: Allure Report
    
 
 **In scope:**
