@@ -9,8 +9,8 @@ class ProductsPage {
 
 
     async sortByOption(text) {
-        await this.sortBy.selectOption(text);     
-        this.sortBy.waitFor();  
+        await this.sortBy.selectOption(text);
+        this.sortBy.waitFor();
     }
 
     async addAllProductsToCart() {
@@ -21,8 +21,11 @@ class ProductsPage {
     }
 
     async addProductToCart(name) {
-        for (let i = 0; i < this.devices.length; i++) {
-            let currentDevice = await devices[i];
+        let devices = await this.getAllDevices();
+        let num = await this.getAllDevices().count();
+
+        for (let i = 0; i < num; i++) {
+            let currentDevice = await devices.nth(i);
             let currentDeviceName = await currentDevice.locator('h2, a').textContent();
             if (currentDeviceName === name) {
                 await device.getByRole('button', { name: 'Add to Cart' }).click();
@@ -33,6 +36,23 @@ class ProductsPage {
 
     async getAllDevices() {
         return await this.devices;
+    }
+
+    async getDeviceByName(deviceName) {
+
+        let devices = await this.getAllDevices();
+        let num = await devices.count();
+
+        for (let i = 0; i < num; i++) {
+            let currentDevice = await devices.nth(i);
+            let currentDeviceName = await currentDevice.locator('li h2 a').textContent();
+
+            if (currentDeviceName === deviceName) {
+                return currentDevice;
+            }
+        }
+
+        return 'No such device';
     }
 
     //accepts array of strings
@@ -48,7 +68,7 @@ class ProductsPage {
     async getAllDevicesWithNameAndPrice() {
 
         let products = [];
-    
+
 
         let cards = await this.getAllDevices();
         let num = await cards.count();
@@ -65,13 +85,13 @@ class ProductsPage {
                 currentPrice = currentPrice.split('$')[1];
             } else {
                 currentPrice = await currentDevice.locator('.price').textContent();
-                currentPrice = currentPrice.slice(1);                
+                currentPrice = currentPrice.slice(1);
             }
 
             device.name = currentName;
-                device.price = Number(currentPrice);
-                products.push(device);
-           
+            device.price = Number(currentPrice);
+            products.push(device);
+
         }
 
         return products;

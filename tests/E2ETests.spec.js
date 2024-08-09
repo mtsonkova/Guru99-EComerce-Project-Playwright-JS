@@ -6,6 +6,7 @@ const navigation = require('../testFiles/navigations.json');
 const {HeaderNav} = require('../utils/HeaderNav');
 const { ReusableProductsFunctions } = require('../utils/ReusableProductsFunctions');
 const { ProductsPage } = require('../pagepbjects/ProductsPage');
+const { ProductInformationPage } = require('../pagepbjects/ProductInformationPage');
 
 
 
@@ -16,6 +17,8 @@ let headerNav;
 let productFunctions;
 let productsPage;
 let commonFunctions;
+let productInformationPage;
+
 
 describe('End to End Tests', async () => {
     beforeAll(async () => {
@@ -34,6 +37,7 @@ describe('End to End Tests', async () => {
         productFunctions = new ReusableProductsFunctions(page);
         productsPage = new ProductsPage(page);
         commonFunctions = new ReusableProductsFunctions(page);
+        productInformationPage = new ProductInformationPage(page);
     });
 
     afterEach(async () => {
@@ -74,6 +78,19 @@ describe('End to End Tests', async () => {
             
            expect(result).toBeTruthy();
         });
+
+        test.only('Verify if cost of product on products page and details page are the same', async() => {
+            await headerNav.clickOnMobile();  
+            await page.waitForURL('http://live.techpanda.org/index.php/mobile.html');
+            let device = await productsPage.getDeviceByName('Sony Xperia');
+            let productPrice = await device.locator('.price').textContent();
+            productPrice = Number(productPrice.slice(1));
+
+            await page.locator('a: text("Sony Xperia")').click();
+            let priceFromDetailsPage = productInformationPage.getProductPrice();
+            expect(productPrice).toEqual(priceFromDetailsPage);
+
+        })
     });
 
 
