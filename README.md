@@ -127,7 +127,7 @@ The first test case will be split to 3 separate test cases as follows:
    
    	3.6. Assert they are equal.
 
-4.Additional test case: Sort products by price -> Repeat steps 3.1. to 3.6.
+4.Additional test case: Sort products by price -> Repeat steps 3.1. to 3.6. - **done**
 
 ![Testcase-v2](https://github.com/user-attachments/assets/324720ad-b1ab-4ddb-aa67-00ea6e5d3060)
 This test case will be automated as is.
