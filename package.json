@@ -4,19 +4,20 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test" : "npx playwright test ./tests/e2etests.spec.js", 
-    "headed" : "npx playwright test /tests/e2etests.spec.js --headed",
-    "debug" : "npx playwright test /tests/e2etests.spec.js --debug",
-    "testUI" : "npx playwright test /tests/ui-navigation.spec.js",
-    "headedUI" : "npx playwright test /tests/ui-navigation.spec.js --headed",
-    "debugUI" : "npx playwright test /tests/ui-navigation.spec.js --debug"
-
+    "test": "npx playwright test ./tests/e2etests.spec.js",
+    "headed": "npx playwright test /tests/e2etests.spec.js --headed",
+    "debug": "npx playwright test /tests/e2etests.spec.js --debug",
+    "testUI": "npx playwright test /tests/ui-navigation.spec.js",
+    "headedUI": "npx playwright test /tests/ui-navigation.spec.js --headed",
+    "debugUI": "npx playwright test /tests/ui-navigation.spec.js --debug"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@playwright/test": "^1.45.1",
-    "@types/node": "^20.14.10"
+    "@types/node": "^20.14.10",
+    "allure-commandline": "^2.30.0",
+    "allure-playwright": "^3.0.0-beta.9"
   }
 }
