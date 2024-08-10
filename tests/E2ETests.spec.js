@@ -79,7 +79,7 @@ describe('End to End Tests', async () => {
            expect(result).toBeTruthy();
         });
 
-        test.only('Verify if cost of product on products page and details page are the same', async() => {
+        test('Verify if cost of product on products page and details page are the same', async() => {
             await headerNav.clickOnMobile();  
             await page.waitForURL('http://live.techpanda.org/index.php/mobile.html');
             let device = await productsPage.getDeviceByName('Sony Xperia');
@@ -91,7 +91,15 @@ describe('End to End Tests', async () => {
            
             expect(productPrice).toEqual(priceFromDetailsPage);
 
-        })
+        });
+
+        test.only('Try to purchase more qty of a product than the available in the store', async() => {
+            await headerNav.clickOnMobile();  
+            await page.waitForURL('http://live.techpanda.org/index.php/mobile.html');
+            let device = await productsPage.getDeviceByName('Sony Xperia');
+            await productFunctions.clickAddToCart(device);
+            console.log('btn clicked');
+        });
     });
 
 

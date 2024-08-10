@@ -2,7 +2,6 @@ class ReusableProductsFunctions {
     constructor(page) {
         this.page = page;
         this.sort = page.locator('select');
-        this.btnAddToCart = page.getByRole('button', {name : 'Add to Cart'});
         this.btnAddToWishlist = page.getByRole('a', {name : 'Add to Wishlist'});
         this.btnAddToCompare = page.getByRole('a', {name : 'Add to Compare'});
     }
@@ -19,8 +18,8 @@ class ReusableProductsFunctions {
         await this.sort.selectOption('Price');
     } 
 
-    async clickAddToCart() {
-        await this.btnAddToCart.click();
+    async clickAddToCart(device) {
+        await device.getByRole('button', {name: 'Add to Cart'}).click();
     }
 
     async clickAddToWishList() {
@@ -31,7 +30,7 @@ class ReusableProductsFunctions {
         await this.btnAddToCompare.click();
     }
 
-    compareTwoProductArrays(arr1, arr2) {
+    static compareTwoProductArrays(arr1, arr2) {
         return JSON.stringify(arr1) === JSON.stringify(arr2);
     }
 }
