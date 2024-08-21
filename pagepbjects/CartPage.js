@@ -45,13 +45,13 @@ class CartPage {
         return await this.productQTY.textContent();
     }
 
-    async changeProductQty(number, nameOfProduct) {
+    async changeProductQty(nameOfProduct, qty) {
         let productsInCart = await this.getAllProductsInCart();
         let productsCount = await productsInCart.count;
         for(let i = 0; i < productsCount; i++) {
             let currentName = await this.getProductName();
             if(currentName === nameOfProduct) {
-                await this.productQTY.fill(number);
+                await this.productQTY.fill(qty);
                 await this.updateCart();
                 break;
             }

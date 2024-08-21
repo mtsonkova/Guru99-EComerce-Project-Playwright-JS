@@ -7,7 +7,7 @@ const {HeaderNav} = require('../utils/HeaderNav');
 const { ReusableProductsFunctions } = require('../utils/ReusableProductsFunctions');
 const { ProductsPage } = require('../pagepbjects/ProductsPage');
 const { ProductInformationPage } = require('../pagepbjects/ProductInformationPage');
-
+const { CartPage} = require('../pagepbjects/CartPage')
 
 
 let browser;
@@ -18,6 +18,7 @@ let productFunctions;
 let productsPage;
 let commonFunctions;
 let productInformationPage;
+let cartPage;
 
 
 describe('End to End Tests', async () => {
@@ -99,6 +100,9 @@ describe('End to End Tests', async () => {
             let device = await productsPage.getDeviceByName('Sony Xperia');
             await productFunctions.clickAddToCart(device);
             await headerNav.clickOnMyCart();
+            let cartPage = new CartPage();
+            await cartPage.changeProductQty('Sony Xperia', 1000);
+            let productErrMsg = await cartPage.getProductErrMsg();
             
         });
     });
