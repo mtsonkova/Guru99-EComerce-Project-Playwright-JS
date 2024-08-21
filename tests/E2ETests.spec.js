@@ -103,7 +103,10 @@ describe('End to End Tests', async () => {
             let cartPage = new CartPage();
             await cartPage.changeProductQty('Sony Xperia', 1000);
             let productErrMsg = await cartPage.getProductErrMsg();
-            
+            let cartErrMsg = await cartPage.shoppingCartErrMsg();
+            await expect(productErrMsg).toHaveText('The maximum quantity allowed for purchase is 500');
+            await expecyt(cartErrMsg).toEqual('Some of the products cannot be ordered in requested quantity.');
+
         });
     });
 

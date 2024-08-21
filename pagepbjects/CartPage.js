@@ -11,6 +11,8 @@ class CartPage {
         this.emptyCartBtn = page.locator('#empty_cart_button');
         this.updateShoppingCart = page.locator('button[title="Update Shopping Cart"]');
         this.continueShoppingBtn = page.locator('.btn-continue');
+        this.shoppingCartSuccessMsg = page.locator('.success-msg');
+        this.shoppingCartErrMsg = page.locator('.error-msg');
         this.productErrMsg = page.locator('.item-msg error');
 
         //discount section
@@ -82,6 +84,14 @@ class CartPage {
         }
     }
 
+    async getCartSuccessMsg() {
+        return await this.shoppingCartSuccessMsg.textContent();
+    }
+
+    async getCartErrMsg() {
+        return await this.shoppingCartErrMsg.textContent();
+    }
+
     async removeAllProductsFromCart(){
         await this.emptyCartBtn.click();
     }
@@ -89,7 +99,7 @@ class CartPage {
     async updateCart() {
         await this.updateShoppingCart.click();
     }
-
+    
     async continueShopping() {
         await this.continueShoppingBtn.click();
     }
