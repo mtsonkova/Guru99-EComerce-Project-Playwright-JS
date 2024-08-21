@@ -10,7 +10,8 @@ class CartPage {
         this.productSubtotal = page.locator('product-cart-total span.price');
         this.deleteBtn = page.locator('.product-cart-remove a');
         this.emptyCartBtn = page.locator('#empty_cart_button');
-        this.updateShoppingCart = page.locator('button[title="Update Shopping Cart"]');
+        this.updateShoppingCart = page.getByRole('button', { name: 'Update Shopping Cart' });
+        //this.updateShoppingCart = page.locator('button[title="Update Shopping Cart"]');
         this.continueShoppingBtn = page.locator('.btn-continue');
         this.shoppingCartSuccessMsg = page.locator('.success-msg');
         this.shoppingCartErrMsg = page.locator('.error-msg span');
@@ -60,9 +61,8 @@ class CartPage {
             currentRow = this.allProductsInCart.nth(i);
             let currentName = await currentRow.locator('td h2 a').textContent();
             if (currentName.trim() === nameOfProduct) {
-              qtyField = currentRow.locator('td.product-cart-actions input');
-              await qtyField.fill(qty); // Get the input within the specific row
-                //await qtyInputField.fill(qty); // Fill the quantity for the correct product
+                qtyField = currentRow.locator('td.product-cart-actions input');
+                await qtyField.fill(qty);
                 await this.updateCart();
                 break;
             }
@@ -75,7 +75,8 @@ class CartPage {
             let currentRow = this.allProductsInCart.nth(i);
             let currentName = await currentRow.locator('td h2 a').textContent();
             if (currentName.trim() === nameOfProduct) {
-                return await currentRow.locator('p.error').textContent();
+                await expect('p.error').toBeVisible()
+                return await this.page.locator('p.error').textContent();
 
             }
         }
