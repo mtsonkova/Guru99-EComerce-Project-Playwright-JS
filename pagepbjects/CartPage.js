@@ -13,7 +13,7 @@ class CartPage {
         this.updateShoppingCart = page.locator('button[title="Update Shopping Cart"]');
         this.continueShoppingBtn = page.locator('.btn-continue');
         this.shoppingCartSuccessMsg = page.locator('.success-msg');
-        this.shoppingCartErrMsg = page.locator('.error-msg');
+        this.shoppingCartErrMsg = page.locator('.error-msg span');
         this.productErrMsg = page.locator('p.error');
 
         //discount section
@@ -53,13 +53,16 @@ class CartPage {
     }
 
     async changeProductQty(nameOfProduct, qty) {
+        let currentRow;
+        let qtyField;
         let productsCount = await this.allProductsInCart.count();
         for (let i = 0; i < productsCount; i++) {
-            let currentRow = this.allProductsInCart.nth(i);
+            currentRow = this.allProductsInCart.nth(i);
             let currentName = await currentRow.locator('td h2 a').textContent();
             if (currentName.trim() === nameOfProduct) {
-                let qtyInputField = await currentRow.locator('td.product-cart-actions input'); // Get the input within the specific row
-                await qtyInputField.fill(qty); // Fill the quantity for the correct product
+              qtyField = currentRow.locator('td.product-cart-actions input');
+              await qtyField.fill(qty); // Get the input within the specific row
+                //await qtyInputField.fill(qty); // Fill the quantity for the correct product
                 await this.updateCart();
                 break;
             }
