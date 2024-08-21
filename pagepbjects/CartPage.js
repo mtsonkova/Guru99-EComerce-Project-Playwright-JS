@@ -11,6 +11,7 @@ class CartPage {
         this.emptyCartBtn = page.locator('#empty_cart_button');
         this.updateShoppingCart = page.locator('button[title="Update Shopping Cart"]');
         this.continueShoppingBtn = page.locator('.btn-continue');
+        this.productErrMsg = page.locator('.item-msg error');
 
         //discount section
         this.discountField = page.locator('#coupon_code');
@@ -29,6 +30,9 @@ class CartPage {
         this.checkoutMultipleAddresses = page.locator('.method-checkout-cart-methods-multishipping')
     }
 
+    async getAllProductsInCart() {
+        return await this.allProductsInCart;
+    }
     async getProductName() {
         return await this.productName.textContent();
     }
@@ -41,8 +45,21 @@ class CartPage {
         return await this.productQTY.textContent();
     }
 
-    async changeProductQty(number) {
-        await this.productQTY.fill(number);
+    async changeProductQty(number, nameOfProduct) {
+        let productsInCart = await this.getAllProductsInCart();
+        let productsCount = await productsInCart.count;
+        for(let i = 0; i < productsCount; i++) {
+            let currentName = await this.getProductName();
+            if(currentName === nameOfProduct) {
+                await this.productQTY.fill(number);
+                await this.updateCart();
+                break;
+            }
+        }       
+    }
+
+    async getProductErrMsg() {
+        return await this.productErrMsg.textContent();
     }
 
     async getProductSubtotal() {

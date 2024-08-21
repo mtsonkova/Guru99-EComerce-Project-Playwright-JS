@@ -98,7 +98,8 @@ describe('End to End Tests', async () => {
             await page.waitForURL('http://live.techpanda.org/index.php/mobile.html');
             let device = await productsPage.getDeviceByName('Sony Xperia');
             await productFunctions.clickAddToCart(device);
-            console.log('btn clicked');
+            await headerNav.clickOnMyCart();
+            
         });
     });
 
