@@ -2,7 +2,8 @@ class CartPage {
     constructor(page) {
         this.page = page;
         //cart
-        this.allProductsInCart = page.locator('#shopping-cart-table tbody tr');
+        this.productsTable = page.locator('table#shopping-cart-table');
+        this.allProductsInCart = this.productsTable.locator('tbody tr');
         this.productName = page.locator('h2 a');
         this.productSKU = page.locator('div.product-cart-sku span');
         this.productQTY = page.locator('input[title="Qty"]');
@@ -13,7 +14,7 @@ class CartPage {
         this.continueShoppingBtn = page.locator('.btn-continue');
         this.shoppingCartSuccessMsg = page.locator('.success-msg');
         this.shoppingCartErrMsg = page.locator('.error-msg');
-        this.productErrMsg = page.locator('.item-msg error');
+        this.productErrMsg = page.locator('p.error');
 
         //discount section
         this.discountField = page.locator('#coupon_code');
@@ -32,9 +33,12 @@ class CartPage {
         this.checkoutMultipleAddresses = page.locator('.method-checkout-cart-methods-multishipping')
     }
 
+    /*
     async getAllProductsInCart() {
         return await this.allProductsInCart;
     }
+    */
+
     async getProductName() {
         return await this.productName.textContent();
     }
@@ -43,25 +47,35 @@ class CartPage {
         return await this.productSKU.textContent();
     }
 
+
     async getProductQty() {
         return await this.productQTY.textContent();
     }
 
     async changeProductQty(nameOfProduct, qty) {
-        let productsInCart = await this.getAllProductsInCart();
-        let productsCount = await productsInCart.count;
-        for(let i = 0; i < productsCount; i++) {
-            let currentName = await this.getProductName();
-            if(currentName === nameOfProduct) {
-                await this.productQTY.fill(qty);
+        let productsCount = await this.allProductsInCart.count();
+        for (let i = 0; i < productsCount; i++) {
+            let currentRow = this.allProductsInCart.nth(i);
+            let currentName = await currentRow.locator('td h2 a').textContent();
+            if (currentName.trim() === nameOfProduct) {
+                let qtyInputField = await currentRow.locator('td.product-cart-actions input'); // Get the input within the specific row
+                await qtyInputField.fill(qty); // Fill the quantity for the correct product
                 await this.updateCart();
                 break;
             }
-        }       
+        }
     }
 
-    async getProductErrMsg() {
-        return await this.productErrMsg.textContent();
+    async getProductErrMsg(nameOfProduct) {
+        let productsCount = await this.allProductsInCart.count();
+        for (let i = 0; i < productsCount; i++) {
+            let currentRow = this.allProductsInCart.nth(i);
+            let currentName = await currentRow.locator('td h2 a').textContent();
+            if (currentName.trim() === nameOfProduct) {
+                return await currentRow.locator('p.error').textContent();
+
+            }
+        }
     }
 
     async getProductSubtotal() {
@@ -92,27 +106,27 @@ class CartPage {
         return await this.shoppingCartErrMsg.textContent();
     }
 
-    async removeAllProductsFromCart(){
+    async removeAllProductsFromCart() {
         await this.emptyCartBtn.click();
     }
 
     async updateCart() {
         await this.updateShoppingCart.click();
     }
-    
+
     async continueShopping() {
         await this.continueShoppingBtn.click();
     }
 
     async enterDiscountCoupon(discountCode) {
         await this.discountField.fill(discountCode);
-    } 
+    }
 
-    async clickBtnApply(){
+    async clickBtnApply() {
         await this.applyBtn.click();
     }
 
-    async selectcCountry(countryName){
+    async selectcCountry(countryName) {
         await this.selectCountry.selectOption(countryName);
     }
 
@@ -132,11 +146,11 @@ class CartPage {
         return await this.grandTotalPrice.textContent();
     }
 
-    async clickOnProceedToCheckoutBtn(){
+    async clickOnProceedToCheckoutBtn() {
         await this.proceedToCheckoutBtn.click();
     }
 
-    async clikcCheckoutMultipleAddresses(){
+    async clikcCheckoutMultipleAddresses() {
         await this.checkoutMultipleAddresses.click();
     }
 }

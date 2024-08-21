@@ -39,6 +39,7 @@ describe('End to End Tests', async () => {
         productsPage = new ProductsPage(page);
         commonFunctions = new ReusableProductsFunctions(page);
         productInformationPage = new ProductInformationPage(page);
+        cartPage = new CartPage(page);
     });
 
     afterEach(async () => {
@@ -99,10 +100,8 @@ describe('End to End Tests', async () => {
             await page.waitForURL('http://live.techpanda.org/index.php/mobile.html');
             let device = await productsPage.getDeviceByName('Sony Xperia');
             await productFunctions.clickAddToCart(device);
-            await headerNav.clickOnMyCart();
-            let cartPage = new CartPage();
             await cartPage.changeProductQty('Sony Xperia', 1000);
-            let productErrMsg = await cartPage.getProductErrMsg();
+            let productErrMsg = await cartPage.getProductErrMsg('Sony Xperia');
             let cartErrMsg = await cartPage.shoppingCartErrMsg();
             await expect(productErrMsg).toHaveText('The maximum quantity allowed for purchase is 500');
             await expecyt(cartErrMsg).toEqual('Some of the products cannot be ordered in requested quantity.');
