@@ -52,8 +52,7 @@ class CartPage {
             let currentRow = this.allProductsInCart.nth(i);
             let currentName = await currentRow.locator('td h2 a').textContent();
             if (currentName.trim() === nameOfProduct) {
-                return await this.page.locator('p.error').textContent();
-
+               return await this.page.locator('p.error').textContent();
             }
         }
     }
@@ -84,6 +83,7 @@ class CartPage {
     }
 
     async getCartErrMsg() {
+        this.shoppingCartErrMsg.waitFor({state:'visible'});
         let errMsg = await this.shoppingCartErrMsg.textContent();
         return errMsg;
     }
