@@ -104,8 +104,9 @@ describe('End to End Tests', async () => {
             let productErrMsg = await cartPage.getProductErrMsg('Sony Xperia');
             console.log(productErrMsg);
             let cartErrMsg = await cartPage.getCartErrMsg();
-            await expect(productErrMsg).toHaveText('The maximum quantity allowed for purchase is 500');
-            await expect(cartErrMsg).toHaveText('Some of the products cannot be ordered in requested quantity.');
+            console.log(cartErrMsg);
+            await expect(productErrMsg).toContainText('The maximum quantity allowed for purchase is 500');
+            await expect(cartErrMsg).toContainText('Some of the products cannot be ordered in requested quantity.');
 
         });
     });

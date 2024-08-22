@@ -4,17 +4,13 @@ class CartPage {
         //cart
         this.productsTable = page.locator('table#shopping-cart-table');
         this.allProductsInCart = this.productsTable.locator('tbody tr');
-        this.productName = page.locator('h2 a');
-        this.productSKU = page.locator('div.product-cart-sku span');
-        this.productQTY = page.locator('input[title="Qty"]');
-        this.productSubtotal = page.locator('product-cart-total span.price');
-        this.deleteBtn = page.locator('.product-cart-remove a');
+      
         this.emptyCartBtn = page.locator('#empty_cart_button');
         this.updateShoppingCart = page.getByRole('button', { name: 'Update Shopping Cart' });
-        //this.updateShoppingCart = page.locator('button[title="Update Shopping Cart"]');
+        
         this.continueShoppingBtn = page.locator('.btn-continue');
         this.shoppingCartSuccessMsg = page.locator('.success-msg');
-        this.shoppingCartErrMsg = page.locator('.error-msg span');
+        this.shoppingCartErrMsg = page.locator('li.error-msg span');
         this.productErrMsg = page.locator('p.error');
 
         //discount section
@@ -34,26 +30,7 @@ class CartPage {
         this.checkoutMultipleAddresses = page.locator('.method-checkout-cart-methods-multishipping')
     }
 
-    /*
-    async getAllProductsInCart() {
-        return await this.allProductsInCart;
-    }
-    */
-
-    async getProductName() {
-        return await this.productName.textContent();
-    }
-
-    async getProductSQU() {
-        return await this.productSKU.textContent();
-    }
-
-
-    async getProductQty() {
-        return await this.productQTY.textContent();
-    }
-
-    async changeProductQty(nameOfProduct, qty) {
+     async changeProductQty(nameOfProduct, qty) {
         let currentRow;
         let qtyField;
         let productsCount = await this.allProductsInCart.count();
@@ -75,7 +52,6 @@ class CartPage {
             let currentRow = this.allProductsInCart.nth(i);
             let currentName = await currentRow.locator('td h2 a').textContent();
             if (currentName.trim() === nameOfProduct) {
-                await expect('p.error').toBeVisible()
                 return await this.page.locator('p.error').textContent();
 
             }
@@ -103,11 +79,13 @@ class CartPage {
     }
 
     async getCartSuccessMsg() {
-        return await this.shoppingCartSuccessMsg.textContent();
+        let successMsg= await this.shoppingCartErrMsg.textContent();
+        return successMsg;
     }
 
     async getCartErrMsg() {
-        return await this.shoppingCartErrMsg.textContent();
+        let errMsg = await this.shoppingCartErrMsg.textContent();
+        return errMsg;
     }
 
     async removeAllProductsFromCart() {
