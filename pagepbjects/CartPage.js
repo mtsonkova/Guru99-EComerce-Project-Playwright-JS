@@ -9,8 +9,9 @@ class CartPage {
         this.updateShoppingCart = page.getByRole('button', { name: 'Update Shopping Cart' });
         
         this.continueShoppingBtn = page.locator('.btn-continue');
-        this.shoppingCartSuccessMsg = page.locator('.success-msg');
-        this.shoppingCartErrMsg = page.locator('li.error-msg span');
+        this.cartMessages = page.locator('ul.messages')
+        this.shoppingCartErrMsg = this.page.locator('li.error-msg ul li span');
+       
         this.productErrMsg = page.locator('p.error');
 
         //discount section
@@ -83,9 +84,8 @@ class CartPage {
     }
 
     async getCartErrMsg() {
-        this.shoppingCartErrMsg.waitFor({state:'visible'});
-        let errMsg = await this.shoppingCartErrMsg.textContent();
-        return errMsg;
+        return await this.shoppingCartErrMsg.textContent();
+       
     }
 
     async removeAllProductsFromCart() {
