@@ -9,6 +9,7 @@ const { ProductsPage } = require('../pagepbjects/ProductsPage');
 const { ProductInformationPage } = require('../pagepbjects/ProductInformationPage');
 const { CartPage} = require('../pagepbjects/CartPage');
 const { TIMEOUT } = require('dns');
+const {ReusableFunctions} = require('../utils/ReusableFunctions');
 
 
 let browser;
@@ -60,7 +61,8 @@ describe('End to End Tests', async () => {
             await page.waitForURL('http://live.techpanda.org/index.php/mobile.html?dir=asc&order=price');
             let sortedDevicesByPrice = await productsPage.getAllDevicesWithNameAndPrice();
            
-            let comparisonResult = productFunctions.compareTwoProductArrays(sortedDevices, sortedDevicesByPrice);
+            let comparisonResult = ReusableFunctions.compareTwoProductArrays(sortedDevices, sortedDevicesByPrice);
+         
             expect(comparisonResult).toBeTruthy();
             
         });
@@ -77,7 +79,7 @@ describe('End to End Tests', async () => {
            
            let sortedDevicesByName = await productsPage.getAllDevicesWithNameAndPrice();
            
-           let result = productFunctions.compareTwoProductArrays(sortedDevices, sortedDevicesByName);
+           let result = ReusableFunctions.compareTwoProductArrays(sortedDevices, sortedDevicesByName);
             
            expect(result).toBeTruthy();
         });
