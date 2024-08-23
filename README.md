@@ -137,7 +137,7 @@ This test case will be automated as is. - **done**
 
 ![Testcase-v3](https://github.com/user-attachments/assets/53ace54b-72e8-4067-85fd-82eed649c0eb)
 This test case will be split to 3 separate test cases:
-1. Try to purchase more qty than what is available in the store and check the error message.
+1. Try to purchase more qty than what is available in the store and check the error message. - **done**
 2. Verify that when entering empty shopping cart there is a message sayng "SHOPPING CART IS EMPTY".
 3. Remove all products from the shopping cart and verify that a message sayng "SHOPPING CART IS EMPTY" is displayed.
 
