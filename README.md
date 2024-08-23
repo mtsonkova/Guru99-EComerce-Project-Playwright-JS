@@ -167,32 +167,5 @@ This test case will not be automated because the given discount is not deducted 
 
 ## Project Notes
 
-There are multiple workflows to test in this project. Some of them are:
-
-**Flow 1**: Landing page -> Products Page -> Add 1 or more products to shopping cart -> Checkout -> Checkout as Guest -> Billing address same as shipping address -> Payment Information check/money order -> Order Review -> Place Order 
-
-**Flow 2**: Landing page -> Products Page -> Add 1 or more products to shopping cart -> Checkout -> Checkout as Guest -> Billing address same as shipping address -> Payment Information check/money order -> Order Review -> Edit your cart -> Add 1 or more products to shopping cart -> Checkout -> Checkout as Guest -> Billing address same as shipping address -> Payment Information check/money order -> Order Review -> Place Order
-
-**Flow 3**: Landing page -> Products Page -> Add 1 or more products to Wishlist -> User sent to Login or Register Screen -> Login -> Enter wishlist and add product to shopping cart -> Checkout -> Billing address same as shipping address -> Payment Information check/money order -> Order Review -> Place Order
-
-**Flow 4**: Landing page -> Account -> Login -> Products Page -> Add products to compare -> Enter compare list -> Add to cart compared product -> Checkout -> Billing Address different from shipping address -> Payment information Payment Information check/money order -> Order Review -> Place Order
-
-**Flow 5**: Landing page -> Account -> Login -> Products Page -> Add products to compare -> Enter compare list -> Add product to wishlist -> Enter wish list -> Add 
-product to cart -> Checkout -> Billing Address same shipping address -> Payment information check/money order -> Order Review -> Place Order
-
----
-
-
-The challange with this project is that some sections, buttons, message placeholders are shared between different sections.
-For example:
-the header and footer are visible on all sections -> product catalog, shopping cart, etc.
-The 3 buttons ADD TO CART, Add to Wishlist, Add to Compare are visible on products catalogue as well as on product details pages. 
-
-*utils folder content*
-Utils folder holds all common elements and shared functions accross the project.
-	**NavigationElements.js** - holds common items belonging to header and footer;
- 	**ReusableProductsFunctions.js** - holds common actions, performed on products such as Add to Cart, Add to wishlist, Add to Compare
-
-
 
 
