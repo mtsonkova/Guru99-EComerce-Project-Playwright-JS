@@ -7,7 +7,8 @@ const {HeaderNav} = require('../utils/HeaderNav');
 const { ReusableProductsFunctions } = require('../utils/ReusableProductsFunctions');
 const { ProductsPage } = require('../pagepbjects/ProductsPage');
 const { ProductInformationPage } = require('../pagepbjects/ProductInformationPage');
-const { CartPage} = require('../pagepbjects/CartPage')
+const { CartPage} = require('../pagepbjects/CartPage');
+const { TIMEOUT } = require('dns');
 
 
 let browser;
@@ -95,19 +96,22 @@ describe('End to End Tests', async () => {
 
         });
 
-        test.only('Try to purchase more qty of a product than the available in the store', async() => {
+        test('Try to purchase more qty of a product than the available in the store', async() => {
             await headerNav.clickOnMobile();  
             await page.waitForURL('http://live.techpanda.org/index.php/mobile.html');
             let device = await productsPage.getDeviceByName('Sony Xperia');
             await productFunctions.clickAddToCart(device);
-            await cartPage.changeProductQty('Sony Xperia', '1000');
-            let productErrMsg = await cartPage.getProductErrMsg('Sony Xperia');
-            let cartErrMsg = await cartPage.getCartErrMsg();
-            console.log(cartErrMsg);
-            await expect(productErrMsg === undefined).toBeFalsy;
-            await expect(productErrMsg).toContainText('* The maximum quantity allowed for purchase is 500.');
-            await expect(cartErrMsg).toContainText('Some of the products cannot be ordered in requested quantity.');
-
+            await page.waitForURL('http://live.techpanda.org/index.php/checkout/cart/');
+            let result = await cartPage.changeProductQty('Sony Xperia', '1000');
+            let cartErrMsg = result.cartErrMsg;
+            let productErrMsg = result.productErrMsg;
+     
+          await expect(result === undefined).toBeFalsy();
+          await expect(productErrMsg === undefined).toBeFalsy();
+          await expect(cartErrMsg === undefined).toBeFalsy();
+          await expect(productErrMsg).toEqual('* The maximum quantity allowed for purchase is 500.');
+          await expect(cartErrMsg).toEqual('Some of the products cannot be ordered in requested quantity.');
+               
         });
     });
    

@@ -31,31 +31,54 @@ class CartPage {
         this.checkoutMultipleAddresses = page.locator('.method-checkout-cart-methods-multishipping')
     }
 
-     async changeProductQty(nameOfProduct, qty) {
-        let currentRow;
-        let qtyField;
-        let productsCount = await this.allProductsInCart.count();
-        for (let i = 0; i < productsCount; i++) {
-            currentRow = this.allProductsInCart.nth(i);
-            let currentName = await currentRow.locator('td h2 a').textContent();
-            if (currentName.trim() === nameOfProduct) {
-                qtyField = currentRow.locator('td.product-cart-actions input');
-                await qtyField.fill(qty);
-                await this.updateCart();
-                break;
+    async changeProductQty(nameOfProduct, qty) {
+        try {
+            let currentRow;
+            let qtyField;
+            let productsCount = await this.allProductsInCart.count();
+            
+            for (let i = 0; i < productsCount; i++) {
+                currentRow = this.allProductsInCart.nth(i);
+                let currentNameLocator = currentRow.locator('td h2 a');
+                let currentName = await currentNameLocator.textContent();
+                if (currentName.trim() === nameOfProduct) {
+                    qtyField = currentRow.locator('td.product-cart-actions input');
+                    await qtyField.fill(qty);
+                    await this.updateCart();
+                    
+                    if (qty > 500) {
+                        let errMsgs = {};
+                        let productErr = await this.getProductErrMsg(nameOfProduct);
+                        let cartErr = await this.getCartErrMsg();
+                        
+                        errMsgs.productErrMsg = productErr;
+                        errMsgs.cartErrMsg = cartErr;
+    
+                        return errMsgs;
+                    }
+    
+                    return { success: true, message: "Quantity updated successfully" };
+                }
             }
+            return { error: true, message: "Product not found" };
+        } catch (error) {
+            console.error("An error occurred in changeProductQty:", error);
+            return { error: true, message: "An unexpected error occurred" };
         }
     }
 
-    async getProductErrMsg(nameOfProduct) {
+    async getProductErrMsg(productName) {
         let productsCount = await this.allProductsInCart.count();
         for (let i = 0; i < productsCount; i++) {
             let currentRow = this.allProductsInCart.nth(i);
             let currentName = await currentRow.locator('td h2 a').textContent();
-            if (currentName.trim() === nameOfProduct) {
-               return await this.page.locator('p.error').textContent();
+            if (currentName.trim() === productName) {
+                let errMsg = await currentRow.locator('p.error').textContent();
+               //return await this.page.locator('p.error').textContent();
+               return await errMsg.trim();               
             }
         }
+        return 'No product error';
     }
 
     async getProductSubtotal() {
@@ -84,8 +107,8 @@ class CartPage {
     }
 
     async getCartErrMsg() {
-        return await this.shoppingCartErrMsg.textContent();
-       
+        //await this.page.waitForLoadState('domcontentloaded');
+        return await this.page.locator('.error-msg span').textContent();
     }
 
     async removeAllProductsFromCart() {
