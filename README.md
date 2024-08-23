@@ -158,7 +158,10 @@ This test case will be automated as is.
 This test case will be automated as is with one addition -> check what happens with the old order: whether it is canceled or deleted as this test case does not state what is expected to happen to it.
 
 ![Testcase-v9](https://github.com/user-attachments/assets/1479496a-6526-45c9-97d4-82ed76862c0b)
-This test case will be automated as is.
+This test case will not be automated because the given discount is not deducted from the final price as seen in t he screenshot below:
+
+![discountFieldVisibleButNoActualDiscountAppliedOnProductPrice](https://github.com/user-attachments/assets/1c0cac13-11b0-4e7d-8431-5606c5b6cb86)
+
 
 ![Testcase-v10](https://github.com/user-attachments/assets/af39fa4d-7041-4875-b46d-55e857ac48e4)
 
