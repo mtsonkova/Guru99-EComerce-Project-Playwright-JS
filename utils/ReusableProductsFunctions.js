@@ -25,7 +25,7 @@ class ReusableProductsFunctions {
     }
 
     async clickAddToCompare(device) {
-        await device.getByRole('button', { name: 'Add to Compare' }).click();
+        await device.getByRole('link', {name: 'Add to Compare'}).click();
     }
 }
 

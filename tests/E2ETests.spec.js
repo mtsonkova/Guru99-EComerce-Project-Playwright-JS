@@ -10,6 +10,7 @@ const { ProductInformationPage } = require('../pagepbjects/ProductInformationPag
 const { CartPage} = require('../pagepbjects/CartPage');
 const { TIMEOUT } = require('dns');
 const {ReusableFunctions} = require('../utils/ReusableFunctions');
+const {NavigationElements} = require('../utils/NavigationElements');
 
 
 let browser;
@@ -21,6 +22,8 @@ let productsPage;
 let commonFunctions;
 let productInformationPage;
 let cartPage;
+let devicesArr = ['Sony Xperia', 'IPhone'];
+let navigationElements;
 
 
 describe('End to End Tests', async () => {
@@ -42,6 +45,7 @@ describe('End to End Tests', async () => {
         commonFunctions = new ReusableProductsFunctions(page);
         productInformationPage = new ProductInformationPage(page);
         cartPage = new CartPage(page);
+        navigationElements = new NavigationElements(page);
     });
 
     afterEach(async () => {
@@ -125,6 +129,28 @@ describe('End to End Tests', async () => {
             await cartPage.removeAllProductsFromCart();
             let emptyCartTitle = await headerNav.getTitle();
             await expect(emptyCartTitle).toEqual('Shopping Cart is Empty');
+        });
+
+        test.only('Verify that you are able to compare two products', async() => {
+            await headerNav.clickOnMobile();  
+            await page.waitForURL('http://live.techpanda.org/index.php/mobile.html');
+            for(let i = 0; i < devicesArr.length; i++) {
+                let currentDeviceName = devicesArr[i];
+                let device = await productsPage.getDeviceByName(currentDeviceName);
+                await productFunctions.clickAddToCompare(device);
+            }
+
+            const [popupPage] = await Promise.all([
+                context.waitForEvent('page'),
+                page.getByRole('button', {name: 'Compare'}).click()
+            ]);
+            
+            //To do 
+            // extract products names in comaredProductsArr
+            // compare devicesArr to comparedProductsArr
+            //close popup page -> await popupPage.close();
+            // expect currentPage url to equal 'http://live.techpanda.org/index.php/mobile.html' 
+           
         });
     });
    
