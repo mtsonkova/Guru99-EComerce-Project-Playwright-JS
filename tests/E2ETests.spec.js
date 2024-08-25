@@ -115,6 +115,17 @@ describe('End to End Tests', async () => {
           await expect(cartErrMsg).toEqual('Some of the products cannot be ordered in requested quantity.');
                
         });
+
+        test('Remove all products from shopping cart and expect Shopping cart is empty message', async() => {
+            await headerNav.clickOnMobile();  
+            await page.waitForURL('http://live.techpanda.org/index.php/mobile.html');
+            let device = await productsPage.getDeviceByName('Samsung Galaxy');
+            await productFunctions.clickAddToCart(device);
+            await page.waitForURL('http://live.techpanda.org/index.php/checkout/cart/');
+            await cartPage.removeAllProductsFromCart();
+            let emptyCartTitle = await headerNav.getTitle();
+            await expect(emptyCartTitle).toEqual('Shopping Cart is Empty');
+        });
     });
    
 });
