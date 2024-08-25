@@ -2,33 +2,31 @@ class ReusableProductsFunctions {
     constructor(page) {
         this.page = page;
         this.sort = page.locator('select');
-        this.btnAddToWishlist = page.getByRole('a', {name : 'Add to Wishlist'});
-        this.btnAddToCompare = page.getByRole('a', {name : 'Add to Compare'});
     }
 
-    async sortByPostion(){
+    async sortByPostion() {
         await this.sort.selectOption('Position');
-    } 
+    }
 
-    async sortByName(){
+    async sortByName() {
         await this.sort.selectOption('Name');
-    } 
+    }
 
-    async sortByName(){
+    async sortByName() {
         await this.sort.selectOption('Price');
-    } 
+    }
 
     async clickAddToCart(device) {
-        await device.getByRole('button', {name: 'Add to Cart'}).click();
+        await device.getByRole('button', { name: 'Add to Cart' }).click();
     }
 
     async clickAddToWishList() {
         await this.btnAddToWishlist.click();
     }
 
-    async clickAddToCompare() {
-        await this.btnAddToCompare.click();
-    }    
+    async clickAddToCompare(device) {
+        await device.getByRole('button', { name: 'Add to Compare' }).click();
+    }
 }
 
-module.exports = {ReusableProductsFunctions};
+module.exports = { ReusableProductsFunctions };
