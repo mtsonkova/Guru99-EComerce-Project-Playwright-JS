@@ -1,14 +1,14 @@
 class CompareProductsPage{
     constructor(page) {
         this.page = page;
-        this.productsCards = page.locator('.product-shop-row.top');
+        this.productsCards = page.locator('tr.product-shop-row.top h2 a');
     }
 
     async getProductsNames() {
-        let nameArr = [];
-       let size =  await this.productsCards.size();
+        let nameArr = await this.productsCards.allTextContents();
+      
         
-        console.log(size);
+        console.log(nameArr);
 
     }
 }
