@@ -1,0 +1,2 @@
+Devices arr = 2
+Compared devices = 0

@@ -48,7 +48,7 @@ describe('End to End Tests', async () => {
         productInformationPage = new ProductInformationPage(page);
         cartPage = new CartPage(page);
         navigationElements = new NavigationElements(page);
-        comparedProducts = new CompareProductsPage(page);
+        
     });
 
     afterEach(async () => {
@@ -147,13 +147,18 @@ describe('End to End Tests', async () => {
                 context.waitForEvent('page'),
                 page.getByRole('button', {name: 'Compare'}).click()
             ]);
-            comparedProducts.getProductsNames();
-            console.log(`ballla`);        
-            //To do 
-            // extract products names in comparedProductsArr
-            // compare devicesArr to comparedProductsArr
-            //close popup page -> await popupPage.close();
-            // expect currentPage url to equal 'http://live.techpanda.org/index.php/mobile.html' 
+            comparedProducts = new CompareProductsPage(popupPage);
+
+            let comparedDevicesNames = await comparedProducts.getProductsNames();
+            
+            await popupPage.close();
+            await page.waitForURL('http://live.techpanda.org/index.php/mobile.html');
+                    
+          
+           await expect(devicesArr.length === comparedDevicesNames.length).toBeTruthy();
+           devicesArr.forEach(device => expect(comparedDevicesNames.includes(device)).toBeTruthy);
+            
+          
            
         });
     });
