@@ -11,6 +11,7 @@ const { CartPage} = require('../pagepbjects/CartPage');
 const { TIMEOUT } = require('dns');
 const {ReusableFunctions} = require('../utils/ReusableFunctions');
 const {NavigationElements} = require('../utils/NavigationElements');
+const {CompareProductsPage} = require('../pagepbjects/CompareProductsPage');
 
 
 let browser;
@@ -24,6 +25,7 @@ let productInformationPage;
 let cartPage;
 let devicesArr = ['Sony Xperia', 'IPhone'];
 let navigationElements;
+let comparedProducts;
 
 
 describe('End to End Tests', async () => {
@@ -46,6 +48,7 @@ describe('End to End Tests', async () => {
         productInformationPage = new ProductInformationPage(page);
         cartPage = new CartPage(page);
         navigationElements = new NavigationElements(page);
+        comparedProducts = new CompareProductsPage(page);
     });
 
     afterEach(async () => {
@@ -144,9 +147,10 @@ describe('End to End Tests', async () => {
                 context.waitForEvent('page'),
                 page.getByRole('button', {name: 'Compare'}).click()
             ]);
-            
+            comparedProducts.getProductsNames();
+            console.log(`ballla`);        
             //To do 
-            // extract products names in comaredProductsArr
+            // extract products names in comparedProductsArr
             // compare devicesArr to comparedProductsArr
             //close popup page -> await popupPage.close();
             // expect currentPage url to equal 'http://live.techpanda.org/index.php/mobile.html' 
