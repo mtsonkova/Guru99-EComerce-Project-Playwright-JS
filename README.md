@@ -47,7 +47,7 @@ This test case will be split to 3 separate test cases:
 3. Remove all products from the shopping cart and verify that a message sayng "SHOPPING CART IS EMPTY" is displayed. - **done**
 
 ![Testcase-v4](https://github.com/user-attachments/assets/b189596a-73ba-4736-8de6-0f72903f461c)
-This test case will be automated as is.
+This test case will be automated as is - **done**.
 
 ![Testcase-v5](https://github.com/user-attachments/assets/a213acce-c3e4-4161-a5af-39a983840c7a)
 This test case will be automated using an existing account.
