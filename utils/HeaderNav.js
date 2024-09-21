@@ -2,11 +2,11 @@ class HeaderNav{
     
     constructor(page) {
         this.page = page;
-        this.mobile = page.locator('.nav-1');
-        this.tv = page.locator('.nav-2');
-        this.account = page.locator('#header-account .label');
-        this.headerAccount = page.locator('#header-account .links')
-        this.myAccount = this.headerAccount.getByText('My account');
+        this.mobile = this.page.locator('.nav-1');
+        this.tv = this.page.locator('.nav-2');
+        this.account = this.page.locator('a.skip-account span.label');
+        this.headerAccount = this.page.locator('#header-account')
+        this.myAccount = this.headerAccount.getByText('My Account');
         this.myWishlist = this.headerAccount.getByText('My Wishlist');
         this.myCart = this.headerAccount.getByText('My Cart');
         this.checkout = this.headerAccount.getByText('Checkout');

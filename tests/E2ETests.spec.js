@@ -134,7 +134,7 @@ describe('End to End Tests', async () => {
             await expect(emptyCartTitle).toEqual('Shopping Cart is Empty');
         });
 
-        test.only('Verify that you are able to compare two products', async() => {
+        test('Verify that you are able to compare two products', async() => {
             await headerNav.clickOnMobile();  
             await page.waitForURL('http://live.techpanda.org/index.php/mobile.html');
             for(let i = 0; i < devicesArr.length; i++) {
@@ -156,11 +156,14 @@ describe('End to End Tests', async () => {
                     
           
            await expect(devicesArr.length === comparedDevicesNames.length).toBeTruthy();
-           devicesArr.forEach(device => expect(comparedDevicesNames.includes(device)).toBeTruthy);
-            
-          
+           devicesArr.forEach(device => expect(comparedDevicesNames.includes(device)).toBeTruthy);          
            
         });
+
+        test.only('Register a new user and share wishlist to other people', async() => {
+            await headerNav.clickOnAccount();
+            await headerNav.clickOnMyAccount();
+        })
     });
    
 });
