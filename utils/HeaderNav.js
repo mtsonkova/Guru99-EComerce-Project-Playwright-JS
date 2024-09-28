@@ -5,7 +5,7 @@ class HeaderNav{
         this.mobile = this.page.locator('.nav-1');
         this.tv = this.page.locator('.nav-2');
         this.account = this.page.locator('a.skip-account span.label');
-        this.headerAccount = this.page.locator('#header-account')
+        this.headerAccount = this.page.locator('div#header-account:visible')
         this.myAccount = this.headerAccount.getByText('My Account');
         this.myWishlist = this.headerAccount.getByText('My Wishlist');
         this.myCart = this.headerAccount.getByText('My Cart');
@@ -24,7 +24,7 @@ class HeaderNav{
     }
     
     async clickOnAccount() {
-        await this.headerAccount.click();
+        await this.account.click();
     }
 
     async clickOnCart() {
