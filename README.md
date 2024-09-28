@@ -8,7 +8,6 @@ The purpose of this project is to perform E2E test automation for the [Guru99 EC
  - Framework: Playwright
  - Platform: Windows
  - Browser: Chrome
- - Email : [Mailtrap](https://mailtrap.io/), [Testmail](https://testmail.app/)
  - Reporting Tool: Allure Report
    
 
@@ -31,7 +30,7 @@ The purpose of this project is to perform E2E test automation for the [Guru99 EC
 
 **Test cases to automate:**
  - Manual test cases authored by me.
- - Test cases, provided by Guru99 as part of their timeboxed live project demo. Tests, related to database changes will be excluded.
+ - Test cases, provided by Guru99 as part of their timeboxed live project demo.
 
 ## Test cases, provided by Guru99
    
