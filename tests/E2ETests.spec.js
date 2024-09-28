@@ -12,6 +12,7 @@ const { TIMEOUT } = require('dns');
 const {ReusableFunctions} = require('../utils/ReusableFunctions');
 const {NavigationElements} = require('../utils/NavigationElements');
 const {CompareProductsPage} = require('../pagepbjects/CompareProductsPage');
+const { LoginPage } = require('../pagepbjects/LoginPage');
 
 
 let browser;
@@ -163,7 +164,10 @@ describe('End to End Tests', async () => {
         test.only('Register a new user and share wishlist to other people', async() => {
             await headerNav.clickOnAccount();
             await headerNav.clickOnMyAccount();
-        })
+            await page.waitForURL('http://live.techpanda.org/index.php/customer/account/login/');
+            await page.getByRole('button, {title:"Create an Account"}').click();
+           await page.waitForURL('http://live.techpanda.org/index.php/customer/account/create/');
+        });
     });
    
 });
