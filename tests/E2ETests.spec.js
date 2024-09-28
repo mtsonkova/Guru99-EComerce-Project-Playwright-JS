@@ -13,6 +13,7 @@ const {ReusableFunctions} = require('../utils/ReusableFunctions');
 const {NavigationElements} = require('../utils/NavigationElements');
 const {CompareProductsPage} = require('../pagepbjects/CompareProductsPage');
 const { LoginPage } = require('../pagepbjects/LoginPage');
+const {CreateAccountPage} = require('../pagepbjects/CreateAccountPage');
 
 
 let browser;
@@ -161,12 +162,15 @@ describe('End to End Tests', async () => {
            
         });
 
-        test.only('Register a new user and share wishlist to other people', async() => {
+        test.only('Login and share wishlist to other people', async() => {
             await headerNav.clickOnAccount();
             await headerNav.clickOnMyAccount();
             await page.waitForURL('http://live.techpanda.org/index.php/customer/account/login/');
             await page.getByRole('button, {title:"Create an Account"}').click();
-           await page.waitForURL('http://live.techpanda.org/index.php/customer/account/create/');
+            await page.waitForURL('http://live.techpanda.org/index.php/customer/account/create/');
+            let newAccount = new CreateAccountPage(page);
+            await newAccount.registerWithValidDataRequiredFieldsOnlyNotSignedForNews('Samantha', 'Green', 'samgreen@test.qa', 'qapass');
+
         });
     });
    
