@@ -43,7 +43,7 @@ class CreateAccountPage {
         await this.btnRegister.click();
     }
 
-    async registerWithValidDataAllFieldsSignedForNews(firstName, middleName, lastName, email, password) {
+    async registerValidDataAllFieldsSignedForNews(firstName, middleName, lastName, email, password) {
         await this.enterFirstName(firstName);
         await this.enterMiddleName(middleName);
         await this.enterLastName(lastName);
@@ -54,7 +54,7 @@ class CreateAccountPage {
         await this.clickOnRegisterBtn();
     }
 
-    async registerWithValidDataAllFieldsNotSignedForNews(firstName, middleName, lastName, email, password) {
+    async registerValidDataAllFieldsNotSignedForNews(firstName, middleName, lastName, email, password) {
         await this.enterFirstName(firstName);
         await this.enterMiddleName(middleName);
         await this.enterLastName(lastName);
@@ -64,7 +64,7 @@ class CreateAccountPage {
         await this.clickOnRegisterBtn();
     }
 
-    async registerWithValidDataRequiredFieldsOnlySignedForNews(firstName,  lastName, email, password) {
+    async registerValidDataRequiredFieldsSignedForNews(firstName,  lastName, email, password) {
         await this.enterFirstName(firstName);
         await this.enterLastName(lastName);
         await this.enterEmail(email);
@@ -74,7 +74,7 @@ class CreateAccountPage {
         await this.clickOnRegisterBtn();
     }
 
-    async registerWithValidDataRequiredFieldsOnlyNotSignedForNews(firstName,  lastName, email, password) {
+    async registerValidDataRequiredFieldsNotSignedForNews(firstName,  lastName, email, password) {
         await this.enterFirstName(firstName);
         await this.enterLastName(lastName);
         await this.enterEmail(email);

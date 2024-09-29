@@ -164,12 +164,11 @@ describe('End to End Tests', async () => {
 
         test.only('Login and share wishlist to other people', async() => {
             await headerNav.clickOnAccount();
-            await headerNav.clickOnMyAccount();
+            await headerNav.clickOnLogIn();
             await page.waitForURL('http://live.techpanda.org/index.php/customer/account/login/');
-            await page.getByRole('button, {title:"Create an Account"}').click();
-            await page.waitForURL('http://live.techpanda.org/index.php/customer/account/create/');
-            let newAccount = new CreateAccountPage(page);
-            await newAccount.registerWithValidDataRequiredFieldsOnlyNotSignedForNews('Samantha', 'Green', 'samgreen@test.qa', 'qapass');
+          
+            let logInUser = new LoginPage(page);
+            await logInUser.registerValidDataRequiredFieldsNotSignedForNews('Samantha', 'Green', 'samgreen@test.qa', 'qapass');
 
         });
     });
