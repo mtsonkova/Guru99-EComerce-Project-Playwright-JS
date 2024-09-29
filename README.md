@@ -49,7 +49,7 @@ This test case will be split to 3 separate test cases:
 This test case will be automated as is - **done**.
 
 ![Testcase-v5](https://github.com/user-attachments/assets/a213acce-c3e4-4161-a5af-39a983840c7a)
-This test case will be automated using an existing account.
+This test case will be automated using an existing account, because newly created users cannot be deleted from the database. Should you attempt to repeat the test case with the same test data, the system will throw an error that this user already exists. 
 
 ![Testcase-v6](https://github.com/user-attachments/assets/ec8ae193-1eca-4837-94e1-d66cdb4db7fe)
 This test case will be automated as is.
