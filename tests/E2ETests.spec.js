@@ -168,7 +168,9 @@ describe('End to End Tests', async () => {
             await page.waitForURL('http://live.techpanda.org/index.php/customer/account/login/');
           
             let logInUser = new LoginPage(page);
-            await logInUser.registerValidDataRequiredFieldsNotSignedForNews('Samantha', 'Green', 'samgreen@test.qa', 'qapass');
+            await logInUser.loginWithValidCredentials('samgreen@test.qa', 'password');
+            await page.getByText('My Wishlist').click();
+        
 
         });
     });
