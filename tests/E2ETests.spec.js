@@ -170,6 +170,7 @@ describe('End to End Tests', async () => {
             let logInUser = new LoginPage(page);
             await logInUser.loginWithValidCredentials('samgreen@test.qa', 'password');
             await page.getByText('My Wishlist').click();
+            
         
 
         });
