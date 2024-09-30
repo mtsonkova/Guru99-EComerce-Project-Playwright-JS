@@ -57,7 +57,7 @@ class NavigationElements{
     }
 
     async getSuccessMsg() {
-        let text = await this.this.successMsgPlaceholder().textContent();
+        let text = await this.successMsgPlaceholder.textContent();
         return text;
     }
 }
