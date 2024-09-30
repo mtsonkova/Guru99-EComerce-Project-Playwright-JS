@@ -27,6 +27,12 @@ class LoginPage{
     async clickCreateAccount(){
         await this.createAccount.click();
     }
+
+    async loginWithValidCredentials(email, pass) {
+        await this.enterEmail(email);
+        await this.enterPassword(pass);
+        await this.clickBtnLogin();
+    }
 }
 
 module.exports = {LoginPage};

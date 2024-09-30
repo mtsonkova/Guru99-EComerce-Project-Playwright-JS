@@ -12,6 +12,9 @@ const { TIMEOUT } = require('dns');
 const {ReusableFunctions} = require('../utils/ReusableFunctions');
 const {NavigationElements} = require('../utils/NavigationElements');
 const {CompareProductsPage} = require('../pagepbjects/CompareProductsPage');
+const { LoginPage } = require('../pagepbjects/LoginPage');
+const {MyWishlistPage} = require('../pagepbjects/MyWishlistPage');
+const {ShareYourWishListPage} = require('../pagepbjects/ShareYourWishlistPage');
 
 
 let browser;
@@ -26,6 +29,7 @@ let cartPage;
 let devicesArr = ['Sony Xperia', 'IPhone'];
 let navigationElements;
 let comparedProducts;
+let emailsArr = ['sofqatest1@abv.bg', 'ldonovantest1@abv.bg']
 
 
 describe('End to End Tests', async () => {
@@ -160,10 +164,25 @@ describe('End to End Tests', async () => {
            
         });
 
-        test.only('Register a new user and share wishlist to other people', async() => {
+        test.only('Login and share wishlist to other people', async() => {
             await headerNav.clickOnAccount();
-            await headerNav.clickOnMyAccount();
-        })
+            await headerNav.clickOnLogIn();
+            await page.waitForURL('http://live.techpanda.org/index.php/customer/account/login/');
+          
+            let logInUser = new LoginPage(page);
+            await logInUser.loginWithValidCredentials('samgreen@test.qa', 'password');
+            await page.getByRole('link', {name: 'MY WISHLIST'}).click();
+            let myWishList = new MyWishlistPage(page);
+            await myWishList.clickShareWishListBtn();
+            let shareWishListPage = new ShareYourWishListPage(page);   
+            await shareWishListPage.ShareYourWishlist(emailsArr, 'lorem ipsum');
+            navigationElements = new NavigationElements(page);
+            let sharedWishListMsg = await navigationElements.getSuccessMsg();
+            console.log(sharedWishListMsg)
+            await expect(sharedWishListMsg === 'Your Wishlist has been shared.').toBeTruthy();     
+        
+
+        });
     });
    
 });

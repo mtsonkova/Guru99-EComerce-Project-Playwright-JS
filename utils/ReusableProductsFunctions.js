@@ -12,7 +12,7 @@ class ReusableProductsFunctions {
         await this.sort.selectOption('Name');
     }
 
-    async sortByName() {
+    async sortByPrice() {
         await this.sort.selectOption('Price');
     }
 
