@@ -5,6 +5,7 @@ class MyWishlistPage {
         this.btnUpdateWishList = page.getByRole('button', {name: "UPDATE WISHLIST"}).first;
         this.btnDelete = page.locator('.btn-remove');
         this.edit = page.getByText('Edit');
+        this.btnAddToCart = page.getByRole('button', {name: 'ADD TO CART'});
         this.btnAddAllToCart = page.getByRole('button', {name: "ADD ALL TO CART"});
         this.btnShareWishlist = page.getByRole('button', {name: "SHARE WISHLIST"});
     }
@@ -24,6 +25,10 @@ class MyWishlistPage {
 
     async clickOnAddAllToCart() {
         await this.btnAddAllToCart.click();
+    }
+
+    async clickOnAddToCart() {
+        await this.btnAddToCart.click();
     }
 
     async clickShareWishListBtn() {

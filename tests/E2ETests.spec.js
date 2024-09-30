@@ -15,7 +15,8 @@ const {CompareProductsPage} = require('../pagepbjects/CompareProductsPage');
 const { LoginPage } = require('../pagepbjects/LoginPage');
 const {MyWishlistPage} = require('../pagepbjects/MyWishlistPage');
 const {ShareYourWishListPage} = require('../pagepbjects/ShareYourWishlistPage');
-
+const {CheckoutPage} = require('../pagepbjects/CheckoutPage');
+const {PlaceOrderPage} = require('../pagepbjects/PlacedOrderPage');
 
 let browser;
 let context;
@@ -30,7 +31,9 @@ let devicesArr = ['Sony Xperia', 'IPhone'];
 let navigationElements;
 let comparedProducts;
 let emailsArr = ['sofqatest1@abv.bg', 'ldonovantest1@abv.bg']
-
+let checkoutPage;
+let placedOrder;
+let orderId;
 
 describe('End to End Tests', async () => {
     beforeAll(async () => {
@@ -164,7 +167,7 @@ describe('End to End Tests', async () => {
            
         });
 
-        test.only('Login and share wishlist to other people', async() => {
+        test('Login and share wishlist to other people', async() => {
             await headerNav.clickOnAccount();
             await headerNav.clickOnLogIn();
             await page.waitForURL('http://live.techpanda.org/index.php/customer/account/login/');
@@ -179,10 +182,35 @@ describe('End to End Tests', async () => {
             navigationElements = new NavigationElements(page);
             let sharedWishListMsg = await navigationElements.getSuccessMsg();
             console.log(sharedWishListMsg)
-            await expect(sharedWishListMsg === 'Your Wishlist has been shared.').toBeTruthy();     
-        
-
+            await expect(sharedWishListMsg === 'Your Wishlist has been shared.').toBeTruthy();  
         });
+
+        test.only('Purchase products from My Wish List', async() => {
+            await headerNav.clickOnAccount();
+            await headerNav.clickOnLogIn();
+            await page.waitForURL('http://live.techpanda.org/index.php/customer/account/login/');
+          
+            let logInUser = new LoginPage(page);
+            await logInUser.loginWithValidCredentials('samgreen@test.qa', 'password');
+            await page.getByRole('link', {name: 'MY WISHLIST'}).click();
+            let myWishList = new MyWishlistPage(page);
+            await myWishList.clickOnAddToCart();
+            cartPage = new CartPage(page);
+            await cartPage.clickOnProceedToCheckoutBtn();
+            checkoutPage = new CheckoutPage(page);
+            await checkoutPage.selectBillingInformationSameAddress();
+            await checkoutPage.clickOnContinueBtn();
+            await checkoutPage.selectPaymentMethodCash();
+            await checkoutPage.clickPlaceOrder();
+            placedOrder = new PlaceOrderPage(page);
+            let text = await placedOrder.getOrderReceivedTitle();
+            orderId = await placedOrder.getOrderId();
+            console.log(text);
+            console.log(orderId);
+
+            await expect(text === 'Your order has been received').toBeTruthy();
+            await expect(orderId === '').toBeFalsy();
+        })
     });
    
 });

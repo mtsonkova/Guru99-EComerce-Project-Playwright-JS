@@ -51,6 +51,10 @@ class CheckoutPage{
         await this.loginBtn.click();
     }
 
+    async clickOnContinueBtn() {
+        await this.btnContinue.click();
+    }
+
     async selectCheckoutAsGuest() {
         await this.checkoutAsGuest.check();
         return new BillingGuestUserPage(this.page);
@@ -60,6 +64,26 @@ class CheckoutPage{
         await this.registerAndCheckout.check();
        return new BillingWithUserRegistrationPage(this.page);
     }
+
+    async selectBillingInformationSameAddress() {
+        await this.page.getByLabel('Ship to this address').click();
+        await this.clickOnContinueBtn();
+    }
+
+    async selectBillingInformationDifferentAddress() {
+        await this.page.getByLabel('Ship to different address').click();
+        await this.clickOnContinueBtn();
+    }
+
+    async selectPaymentMethodCash() {
+        await this.cashMoneyRadioBtn.clik();
+        await this.clickOnContinueBtn();
+    }
+
+    async clickPlaceOrder() {
+        await this.btnPlaceOrder.click();
+    }
+   
 }
 
 module.exports = {CheckoutPage};
