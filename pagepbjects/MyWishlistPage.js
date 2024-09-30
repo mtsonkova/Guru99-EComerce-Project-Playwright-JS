@@ -1,12 +1,12 @@
-class MyWishlistPage{
+class MyWishlistPage {
     constructor(page) {
         this.page = page;
         this.textarea = page.locator('textarea');
-        this.btnUpdateWishList = page.getByRole('button', {name: "Update Wishlist"}).first;
+        this.btnUpdateWishList = page.getByRole('button', {name: "UPDATE WISHLIST"}).first;
         this.btnDelete = page.locator('.btn-remove');
         this.edit = page.getByText('Edit');
-        this.btnAddAllToCart = page.getByRole('button', {name: "Add All to Cart"});
-        this.btnShareWishlist = page.getByRole('button', {name: "Share Wishlist"});
+        this.btnAddAllToCart = page.getByRole('button', {name: "ADD ALL TO CART"});
+        this.btnShareWishlist = page.getByRole('button', {name: "SHARE WISHLIST"});
     }
 
     async fillInWishListTextArea(text) {

@@ -1,6 +1,4 @@
-const { Agent } = require("http");
-
-class ShareYourWishList{
+class ShareYourWishListPage{
     constructor(page) {
         this.page = page;
         this.emailsBox = page.locator('#email_address');
@@ -27,3 +25,5 @@ class ShareYourWishList{
         await this.btnShare.click();
     }
 }
+
+module.exports = {ShareYourWishListPage};

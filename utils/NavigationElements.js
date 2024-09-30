@@ -55,6 +55,11 @@ class NavigationElements{
     async clickOnBtnCompare() {
         await this.btnCompare.click();
     }
+
+    async getSuccessMsg() {
+        let text = await this.this.successMsgPlaceholder().textContent();
+        return text;
+    }
 }
 
 module.exports = {NavigationElements};

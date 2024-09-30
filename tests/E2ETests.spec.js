@@ -13,7 +13,8 @@ const {ReusableFunctions} = require('../utils/ReusableFunctions');
 const {NavigationElements} = require('../utils/NavigationElements');
 const {CompareProductsPage} = require('../pagepbjects/CompareProductsPage');
 const { LoginPage } = require('../pagepbjects/LoginPage');
-const {CreateAccountPage} = require('../pagepbjects/CreateAccountPage');
+const {MyWhishlistPage} = require('../pagepbjects/MyWishlistPage');
+const {ShareYourWishListPage} = require('../pagepbjects/ShareYourWishlistPage');
 
 
 let browser;
@@ -28,6 +29,7 @@ let cartPage;
 let devicesArr = ['Sony Xperia', 'IPhone'];
 let navigationElements;
 let comparedProducts;
+let emailsArr = ['random@user.test', 'testemail@qa.this']
 
 
 describe('End to End Tests', async () => {
@@ -169,8 +171,14 @@ describe('End to End Tests', async () => {
           
             let logInUser = new LoginPage(page);
             await logInUser.loginWithValidCredentials('samgreen@test.qa', 'password');
-            await page.getByText('My Wishlist').click();
-            
+            await page.getByRole('link', {name: 'MY WISHLIST'}).click();
+            let myWishList = new MyWhishlistPage(page);
+            await myWishList.clickShareWishListBtn();
+            let shareWishListPage = new ShareYourWishListPage(page);   
+            await shareWishListPage.ShareYourWishlist(emailsArr, 'lorem ipsum');
+            navigationElements = new NavigationElements(page);
+            let sharedWishListMsg = navigationElements.getSuccessMsg();
+            await expect(shareWishListMsg=== sharedWishListMsg).toBeTruthy();     
         
 
         });
