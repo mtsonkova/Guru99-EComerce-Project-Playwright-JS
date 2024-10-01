@@ -2,7 +2,7 @@ class MyWishlistPage {
     constructor(page) {
         this.page = page;
         this.textarea = page.locator('textarea');
-        this.btnUpdateWishList = page.getByRole('button', {name: "UPDATE WISHLIST"}).first;
+        this.btnUpdateWishList = page.getByRole('button', {name: "UPDATE WISHLIST"});
         this.btnDelete = page.locator('.btn-remove');
         this.edit = page.getByText('Edit');
         this.btnAddToCart = page.getByRole('button', {name: 'ADD TO CART'});
@@ -28,7 +28,7 @@ class MyWishlistPage {
     }
 
     async clickOnAddToCart() {
-        await this.btnAddToCart.click();
+        await this.btnAddToCart.nth(0).click();
     }
 
     async clickShareWishListBtn() {

@@ -13,6 +13,7 @@ class CartPage {
         this.shoppingCartErrMsg = this.page.locator('li.error-msg ul li span');
        
         this.productErrMsg = page.locator('p.error');
+        this.proceedToCheckoutBtn = page.getByRole('button', {name: 'PROCEED TO CHECKOUT'}).nth(0);
 
         //discount section
         this.discountField = page.locator('#coupon_code');
@@ -27,7 +28,6 @@ class CartPage {
         //shopping cart totals table
         this.cartTotals = page.locator('#shopping-cart-totals-table');
         this.grandTotalPrice = this.cartTotals.locator('td').nth(2);
-        this.proceedToCheckoutBtn = this.cartTotals.locator('.btn-proceed-checkout');
         this.checkoutMultipleAddresses = page.locator('.method-checkout-cart-methods-multishipping')
     }
 
@@ -152,6 +152,7 @@ class CartPage {
     }
 
     async clickOnProceedToCheckoutBtn() {
+        //await this.proceedToCheckoutBtn.scrollIntoViewIfNeeded();
         await this.proceedToCheckoutBtn.click();
     }
 

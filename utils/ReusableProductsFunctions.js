@@ -16,6 +16,7 @@ class ReusableProductsFunctions {
         await this.sort.selectOption('Price');
     }
 
+    /*
     async clickAddToCart(device) {
         await device.getByRole('button', { name: 'Add to Cart' }).click();
     }
@@ -27,6 +28,96 @@ class ReusableProductsFunctions {
     async clickAddToCompare(device) {
         await device.getByRole('link', {name: 'Add to Compare'}).click();
     }
+         async sortByPostion() {
+        await this.sort.selectOption('Position');
+    }
+
+    async sortByName() {
+        await this.sort.selectOption('Name');
+    }
+
+    async sortByPrice() {
+        await this.sort.selectOption('Price');
+    }
+
+    async clickAddToCart(device) {
+        await device.getByRole('button', { name: 'Add to Cart' }).click();
+    }
+
+    async clickAddToWishList() {
+        await this.btnAddToWishlist.click();
+    }
+
+    async clickAddToCompare(device) {
+        await device.getByRole('link', {name: 'Add to Compare'}).click();
+    } async sortByPostion() {
+        await this.sort.selectOption('Position');
+    }
+
+    async sortByName() {
+        await this.sort.selectOption('Name');
+    }
+
+    async sortByPrice() {
+        await this.sort.selectOption('Price');
+    }
+
+    async clickAddToCart(device) {
+        await device.getByRole('button', { name: 'Add to Cart' }).click();
+    }
+
+    async clickAddToWishList() {
+        await this.btnAddToWishlist.click();
+    }
+
+    async clickAddToCompare(device) {
+        await device.getByRole('link', {name: 'Add to Compare'}).click();
+    } async sortByPostion() {
+        await this.sort.selectOption('Position');
+    }
+
+    async sortByName() {
+        await this.sort.selectOption('Name');
+    }
+
+    async sortByPrice() {
+        await this.sort.selectOption('Price');
+    }
+
+    async clickAddToCart(device) {
+        await device.getByRole('button', { name: 'Add to Cart' }).click();
+    }
+
+    async clickAddToWishList() {
+        await this.btnAddToWishlist.click();
+    }
+
+    async clickAddToCompare(device) {
+        await device.getByRole('link', {name: 'Add to Compare'}).click();
+    } async sortByPostion() {
+        await this.sort.selectOption('Position');
+    }
+
+    async sortByName() {
+        await this.sort.selectOption('Name');
+    }
+
+    async sortByPrice() {
+        await this.sort.selectOption('Price');
+    }
+
+    async clickAddToCart(device) {
+        await device.getByRole('button', { name: 'Add to Cart' }).click();
+    }
+
+    async clickAddToWishList() {
+        await this.btnAddToWishlist.click();
+    }
+
+    async clickAddToCompare(device) {
+        await device.getByRole('link', {name: 'Add to Compare'}).click();
+    }
+        */
 }
 
 module.exports = { ReusableProductsFunctions };

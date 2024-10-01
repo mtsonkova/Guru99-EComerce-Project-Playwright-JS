@@ -115,8 +115,9 @@ describe('End to End Tests', async () => {
         test('Try to purchase more qty of a product than the available in the store', async() => {
             await headerNav.clickOnMobile();  
             await page.waitForURL('http://live.techpanda.org/index.php/mobile.html');
-            let device = await productsPage.getDeviceByName('Sony Xperia');
-            await productFunctions.clickAddToCart(device);
+            //let device = await productsPage.getDeviceByName('Sony Xperia');
+            //await productFunctions.clickAddToCart(device);
+            await productsPage.addProductToCart('Sony Xperia');
             await page.waitForURL('http://live.techpanda.org/index.php/checkout/cart/');
             let result = await cartPage.changeProductQty('Sony Xperia', '1000');
             let cartErrMsg = result.cartErrMsg;
@@ -133,8 +134,7 @@ describe('End to End Tests', async () => {
         test('Remove all products from shopping cart and expect Shopping cart is empty message', async() => {
             await headerNav.clickOnMobile();  
             await page.waitForURL('http://live.techpanda.org/index.php/mobile.html');
-            let device = await productsPage.getDeviceByName('Samsung Galaxy');
-            await productFunctions.clickAddToCart(device);
+            await productsPage.addProductToCart('IPhone');
             await page.waitForURL('http://live.techpanda.org/index.php/checkout/cart/');
             await cartPage.removeAllProductsFromCart();
             let emptyCartTitle = await headerNav.getTitle();
@@ -192,7 +192,11 @@ describe('End to End Tests', async () => {
           
             let logInUser = new LoginPage(page);
             await logInUser.loginWithValidCredentials('samgreen@test.qa', 'password');
-            await page.getByRole('link', {name: 'MY WISHLIST'}).click();
+            await headerNav.clickOnMobile();  
+            await page.waitForURL('http://live.techpanda.org/index.php/mobile.html');
+           //add product to wishlist
+           await productsPage.addProductToWishlist('Sony Xperia');
+          
             let myWishList = new MyWishlistPage(page);
             await myWishList.clickOnAddToCart();
             cartPage = new CartPage(page);

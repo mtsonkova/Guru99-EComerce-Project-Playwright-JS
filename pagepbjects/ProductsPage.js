@@ -3,9 +3,11 @@ const { hasUncaughtExceptionCaptureCallback } = require("process");
 class ProductsPage {
     constructor(page) {
         this.page = page;
-        this.devices = page.getByRole('listitem').filter({
-            has: this.page.locator('div.product-info')
-        });
+        
+        this.devices = page.locator('li.item.last:visible');
+        
+
+        //this.devices = page.locator('div.product-info');
         this.sortBy = page.locator('div.sort-by select').first();
     }
 
@@ -15,6 +17,10 @@ class ProductsPage {
         this.sortBy.waitFor();
     }
 
+    async getAllDevices() {
+        return await this.devices;
+    } 
+
     async addAllProductsToCart() {
 
         await this.devices.forEach(device => {
@@ -23,22 +29,37 @@ class ProductsPage {
     }
 
     async addProductToCart(name) {
+       
         let devices = await this.getAllDevices();
-        let num = await this.getAllDevices().count();
+        let num = await devices.count();
 
         for (let i = 0; i < num; i++) {
             let currentDevice = await devices.nth(i);
-            let currentDeviceName = await currentDevice.locator('h2, a').textContent();
+            let currentDeviceName = await currentDevice.locator('h2 a').textContent();
             if (currentDeviceName === name) {
-                await device.getByRole('button', { name: 'Add to Cart' }).click();
+                await currentDevice.getByRole('button', { name: 'Add to Cart' }).click();
                 break;
             }
         }
     }
 
-    async getAllDevices() {
-        return await this.devices;
+    async addProductToWishlist(name) {
+       
+        let devices = await this.getAllDevices();
+        let num = await devices.count();
+
+        for (let i = 0; i < num; i++) {
+            let currentDevice = await devices.nth(i);
+            let currentDeviceName = await currentDevice.locator('h2 a').textContent();
+            if (currentDeviceName === name) {
+                await currentDevice.getByRole('link', { name: 'Add to Wishlist' }).click();
+                break;
+            }
+        }        
+           
     }
+
+    
 
     async getDeviceByName(deviceName) {
 
