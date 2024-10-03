@@ -55,6 +55,8 @@ describe('End to End Tests', async () => {
         productInformationPage = new ProductInformationPage(page);
         cartPage = new CartPage(page);
         navigationElements = new NavigationElements(page);
+        checkoutPage = new CheckoutPage(page);
+        placedOrder = new PlaceOrderPage(page);
         
     });
 
@@ -201,12 +203,7 @@ describe('End to End Tests', async () => {
             await myWishList.clickOnAddToCart();
             cartPage = new CartPage(page);
             await cartPage.clickOnProceedToCheckoutBtn();
-            checkoutPage = new CheckoutPage(page);
-            await checkoutPage.selectBillingInformationSameAddress();
-            await checkoutPage.clickOnContinueBtn();
-            await checkoutPage.selectPaymentMethodCash();
-            await checkoutPage.clickPlaceOrder();
-            placedOrder = new PlaceOrderPage(page);
+            await checkoutPage.checkoutAsLoggedInUser();
             let text = await placedOrder.getOrderReceivedTitle();
             orderId = await placedOrder.getOrderId();
             console.log(text);

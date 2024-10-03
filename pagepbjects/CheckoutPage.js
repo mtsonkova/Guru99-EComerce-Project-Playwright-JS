@@ -84,6 +84,12 @@ class CheckoutPage{
         await this.btnPlaceOrder.click();
     }
    
+    async checkoutAsLoggedInUser() {
+        await this.selectBillingInformationDifferentAddress();
+        await this.clickOnContinueBtn();
+        await this.selectPaymentMethodCash();
+        await this.clickPlaceOrder();
+    }
 }
 
 module.exports = {CheckoutPage};
