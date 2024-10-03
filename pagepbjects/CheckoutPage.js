@@ -1,4 +1,5 @@
 const { BillingGuestUserPage } = require("./BillingGuestUserPage");
+const {ShippingInformatonPage} = require("./ShippingInformationPage");
 
 class CheckoutPage{
     constructor(page) {
@@ -11,14 +12,14 @@ class CheckoutPage{
          this.forgotPasswordLink = page.getByRole('a', {name: 'Forgot your password?'});
 
         // Checkout as guest or register
-        this.checkoutAsGuest = page.locaotr('#login:guest');
+        this.checkoutAsGuest = page.locator('#login:guest');
         this.registerAndCheckout = page.locator('#login:register');
        
         // this.continueBtn = page.getByRole('button', {name: 'Continue'});
         this.btnContinue =  page.locator('button:visible :text("Continue")');
         
         //shipping information
-        this.shippingInformation = new ShippingInformatonFormPage(this.page);
+        this.shippingInformation = new ShippingInformatonPage(this.page);
        
         //Shipping method
         this.tax = page.locator('dd label span.price');
@@ -76,7 +77,7 @@ class CheckoutPage{
     }
 
     async selectPaymentMethodCash() {
-        await this.cashMoneyRadioBtn.clik();
+        await this.cashMoneyRadioBtn.click();
         await this.clickOnContinueBtn();
     }
 
@@ -85,7 +86,7 @@ class CheckoutPage{
     }
    
     async checkoutAsLoggedInUser() {
-        await this.selectBillingInformationDifferentAddress();
+        await this.selectBillingInformationSameAddress();
         await this.clickOnContinueBtn();
         await this.selectPaymentMethodCash();
         await this.clickPlaceOrder();

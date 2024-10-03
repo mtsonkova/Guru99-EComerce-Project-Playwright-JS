@@ -16,7 +16,7 @@ const { LoginPage } = require('../pagepbjects/LoginPage');
 const {MyWishlistPage} = require('../pagepbjects/MyWishlistPage');
 const {ShareYourWishListPage} = require('../pagepbjects/ShareYourWishlistPage');
 const {CheckoutPage} = require('../pagepbjects/CheckoutPage');
-const {PlaceOrderPage} = require('../pagepbjects/PlacedOrderPage');
+const {PlacedOrderPage} = require('../pagepbjects/PlacedOrderPage');
 
 let browser;
 let context;
@@ -56,7 +56,7 @@ describe('End to End Tests', async () => {
         cartPage = new CartPage(page);
         navigationElements = new NavigationElements(page);
         checkoutPage = new CheckoutPage(page);
-        placedOrder = new PlaceOrderPage(page);
+        placedOrder = new PlacedOrderPage(page);
         
     });
 
