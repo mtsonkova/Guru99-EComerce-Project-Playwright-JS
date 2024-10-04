@@ -2,7 +2,7 @@ class PlacedOrderPage{
     constructor(page) {
         this.page = page;
         this.orderReceivedTitle = page.locator('h1');
-        this.orderId = page.locator('div.col-main a').first;
+        this.orderId = page.locator('div.col-main a').nth(0);
     }
 
     async getOrderId() {

@@ -201,15 +201,18 @@ describe('End to End Tests', async () => {
           
             let myWishList = new MyWishlistPage(page);
             await myWishList.clickOnAddToCart();
-            cartPage = new CartPage(page);
+         
             await cartPage.clickOnProceedToCheckoutBtn();
+         
             await checkoutPage.checkoutAsLoggedInUser();
+            await page.waitForURL('http://live.techpanda.org/index.php/checkout/onepage/success/');
             let text = await placedOrder.getOrderReceivedTitle();
-            orderId = await placedOrder.getOrderId();
             console.log(text);
+            
+            let orderId = await placedOrder.getOrderId();
             console.log(orderId);
-
-            await expect(text === 'Your order has been received').toBeTruthy();
+       
+            await expect(text === 'Your order has been received.').toBeTruthy();
             await expect(orderId === '').toBeFalsy();
         })
     });

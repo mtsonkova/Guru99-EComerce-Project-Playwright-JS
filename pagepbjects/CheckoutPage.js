@@ -9,7 +9,7 @@ class CheckoutPage{
          this.loginEmail = page.locator('#login-email');
          this.loginPassword = page.locator('#login-password');
          this.loginBtn = page.getByRole('button', {name: 'Login'});
-         this.forgotPasswordLink = page.getByRole('a', {name: 'Forgot your password?'});
+         this.forgotPasswordLink = page.locator('a', {name: 'Forgot your password?'});
 
         // Checkout as guest or register
         this.checkoutAsGuest = page.locator('#login:guest');
@@ -25,16 +25,17 @@ class CheckoutPage{
         this.tax = page.locator('dd label span.price');
 
         //Payment method
-        this.creditCardRadioBtn = page.locator('#p_method_ccsave');
+      
+        //this.creditCardRadioBtn = page.getByRole('radio', {name: 'Credit Card (saved)'});
         this.cashMoneyRadioBtn = page.locator('#p_method_checkmo');
 
-        //Credit card data
-        this.creditCardName = page.locator('#ccsave_cc_owner');
-        this.creditCardType = page.locator('#ccsave_cc_type');
-        this.creditcardNumber = page.locator('#ccsave_cc_number');
-        this.month = page.locator('#ccsave_expiration');
-        this.year = page.locator('#ccsave_expiration_yr');
-        this.ccv = page.locator('#ccsave_cc_cid');
+        //Credit card data - not supported
+        // this.creditCardName = page.locator('#ccsave_cc_owner');
+        // this.creditCardType = page.locator('#ccsave_cc_type');
+        // this.creditcardNumber = page.locator('#ccsave_cc_number');
+        // this.month = page.locator('#ccsave_expiration');
+        // this.year = page.locator('#ccsave_expiration_yr');
+        // this.ccv = page.locator('#ccsave_cc_cid');
 
         //Order Review
         this.billingAddress = page.locator('#billing-progress-opcheckout');
@@ -76,6 +77,11 @@ class CheckoutPage{
         await this.clickOnContinueBtn();
     }
 
+    async selectShippingMethod(){
+        await this.tax.scrollIntoViewIfNeeded({timeout: 5000});
+        await this.clickOnContinueBtn();
+    }
+
     async selectPaymentMethodCash() {
         await this.cashMoneyRadioBtn.click();
         await this.clickOnContinueBtn();
@@ -87,7 +93,7 @@ class CheckoutPage{
    
     async checkoutAsLoggedInUser() {
         await this.selectBillingInformationSameAddress();
-        await this.clickOnContinueBtn();
+        await this.selectShippingMethod();
         await this.selectPaymentMethodCash();
         await this.clickPlaceOrder();
     }
