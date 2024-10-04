@@ -52,7 +52,7 @@ This test case will be automated as is - **done**.
 This test case will be automated using an existing account, because newly created users cannot be deleted from the database. Should you attempt to repeat the test case with the same test data, the system will throw an error that this user already exists.  - **done**
 
 ![Testcase-v6](https://github.com/user-attachments/assets/ec8ae193-1eca-4837-94e1-d66cdb4db7fe)
-This test case will be automated as is.
+This test case will be automated as is. - **done**
 
 ![Testcase-v7](https://github.com/user-attachments/assets/1dba2770-9a00-4cf7-b4b7-e97b740dc139)
 This test case will be automated as is. 
