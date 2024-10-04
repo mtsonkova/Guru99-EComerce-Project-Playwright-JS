@@ -17,6 +17,7 @@ const {MyWishlistPage} = require('../pagepbjects/MyWishlistPage');
 const {ShareYourWishListPage} = require('../pagepbjects/ShareYourWishlistPage');
 const {CheckoutPage} = require('../pagepbjects/CheckoutPage');
 const {PlacedOrderPage} = require('../pagepbjects/PlacedOrderPage');
+const {MyOrdersPage} = require('../pagepbjects/MyOrdersPage');
 
 let browser;
 let context;
@@ -33,7 +34,7 @@ let comparedProducts;
 let emailsArr = ['sofqatest1@abv.bg', 'ldonovantest1@abv.bg']
 let checkoutPage;
 let placedOrder;
-let orderId;
+let orders;
 
 describe('End to End Tests', async () => {
     beforeAll(async () => {
@@ -57,6 +58,7 @@ describe('End to End Tests', async () => {
         navigationElements = new NavigationElements(page);
         checkoutPage = new CheckoutPage(page);
         placedOrder = new PlacedOrderPage(page);
+        orders = new MyOrdersPage(page);
         
     });
 
@@ -187,7 +189,7 @@ describe('End to End Tests', async () => {
             await expect(sharedWishListMsg === 'Your Wishlist has been shared.').toBeTruthy();  
         });
 
-        test.only('Purchase products from My Wish List', async() => {
+        test('Purchase products from My Wish List', async() => {
             await headerNav.clickOnAccount();
             await headerNav.clickOnLogIn();
             await page.waitForURL('http://live.techpanda.org/index.php/customer/account/login/');
@@ -205,16 +207,27 @@ describe('End to End Tests', async () => {
             await cartPage.clickOnProceedToCheckoutBtn();
          
             await checkoutPage.checkoutAsLoggedInUser();
+            
             await page.waitForURL('http://live.techpanda.org/index.php/checkout/onepage/success/');
             let text = await placedOrder.getOrderReceivedTitle();
-            console.log(text);
-            
             let orderId = await placedOrder.getOrderId();
-            console.log(orderId);
-       
+           
             await expect(text === 'Your order has been received.').toBeTruthy();
             await expect(orderId === '').toBeFalsy();
+        });
+
+        test.only('Save previousli placed order as a pdf file', async() => {
+            await headerNav.clickOnAccount();
+            await headerNav.clickOnLogIn();
+            await page.waitForURL('http://live.techpanda.org/index.php/customer/account/login/');
+          
+            let logInUser = new LoginPage(page);
+            await logInUser.loginWithValidCredentials('samgreen@test.qa', 'password');
+            await page.getByRole('link', {name: 'MY ORDERS'}).click();
+            await orders.clickOnViewOrder();
+
         })
+
     });
    
 });
