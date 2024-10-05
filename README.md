@@ -55,9 +55,7 @@ This test case will be automated using an existing account, because newly create
 This test case will be automated as is. - **done**
 
 ![Testcase-v7](https://github.com/user-attachments/assets/1dba2770-9a00-4cf7-b4b7-e97b740dc139)
-This test case will be automated as is. 
-**NOTE** Additional research required how to automate the check if the order file is downloaded.
-
+This test case is no suitable for test automation. When the Print Order link is selected a new browser tab opens, and in this new tab there is a pdf download pop-up. There is no actual download process going through the browser. Instead the user can click a Save buton to save the file in pdf format in the Downloads folder where again one has to click on the Save As button from the System prompt. These actions are not detected by the browser. 
 ![Testcase-v8](https://github.com/user-attachments/assets/5d730a76-dab1-4310-ba91-1b456a4bc563)
 This test case will be automated as is with one addition -> check what happens with the old order: whether it is canceled or deleted as this test case does not state what is expected to happen to it.
 
