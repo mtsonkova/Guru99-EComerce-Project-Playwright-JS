@@ -219,7 +219,7 @@ describe('End to End Tests', async () => {
             await expect(orderId === '').toBeFalsy();
         });
 
-        test.only('Save previously placed order as a pdf file', async () => {
+        test('Save previously placed order as a pdf file', async () => {
             await headerNav.clickOnAccount();
             await headerNav.clickOnLogIn();
             await page.waitForURL('http://live.techpanda.org/index.php/customer/account/login/');
@@ -248,8 +248,7 @@ describe('End to End Tests', async () => {
                 bottom: '1in',
                 left: '1in'
               }
-            });
-          
+            });          
            
             let hasOrder = false;
 

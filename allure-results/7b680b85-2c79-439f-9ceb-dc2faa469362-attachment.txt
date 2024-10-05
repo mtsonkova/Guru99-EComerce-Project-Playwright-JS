@@ -1,2 +1,0 @@
-Devices arr = 2
-[]

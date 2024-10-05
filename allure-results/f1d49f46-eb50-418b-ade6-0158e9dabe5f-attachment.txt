@@ -1,2 +1,0 @@
-..\__dirname\Downloads\Print Order # 100023159.pdf
-PDF saved at: ..\__dirname\Downloads\Print Order # 100023159.pdf
