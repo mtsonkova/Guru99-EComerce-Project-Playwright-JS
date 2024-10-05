@@ -266,8 +266,8 @@ describe('End to End Tests', async () => {
             let logInUser = new LoginPage(page);
             await logInUser.loginWithValidCredentials('samgreen@test.qa', 'password');
             await page.getByRole('link', { name: 'MY ORDERS' }).click();
-            let orderTotalBeforeChange = orders.getFirstOrderTotal();
-            let orderIdBeforeChange = orders.getFirstOrderId();
+            let orderTotalBeforeChange = await orders.getFirstOrderTotal();
+            let orderIdBeforeChange = await orders.getFirstOrderId();
             await orders.clickOnReorder();
 
             let firstProductName = cartPage.getFirstProductName();
@@ -275,9 +275,9 @@ describe('End to End Tests', async () => {
             await cartPage.clickOnProceedToCheckoutBtn();
             await checkoutPage.checkoutAsLoggedInUser();
             await page.waitForURL('http://live.techpanda.org/index.php/checkout/onepage/success/');
-            await page.getByRole('link', { name: 'MY ORDERS' }).click();
-            let orderTotalAfterChange = orders.getFirstOrderTotal();
-            let orderIdAfterChange = orders.getFirstOrderId();
+            await page.click('.col-main p a:nth-child(1)');
+            let orderTotalAfterChange = await orders.getFirstOrderTotal();
+            let orderIdAfterChange = await orders.getFirstOrderId();
 
             await expect(orderIdBeforeChange).not.toEqual(orderIdAfterChange);
             await expect(orderTotalBeforeChange).not.toEqual(orderTotalAfterChange);

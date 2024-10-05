@@ -21,13 +21,13 @@ class MyOrdersPage{
 
     async getFirstOrderTotal(){
         let firstRow = await this.tableRows.first();
-        let orderTotal = await firstRow.locator('td:nth-child(4)').textContent();
+        let orderTotal = await firstRow.locator('td.total span').textContent();
         return orderTotal;
     }
 
     async getFirstOrderId() {
         let firstRow = await this.tableRows.first();
-        let firstOrderId = await firstRow.locator('td:nth-child(1)').textContent();
+        let firstOrderId = await firstRow.locator('td.number span').textContent();
         return firstOrderId;
     }
 }
