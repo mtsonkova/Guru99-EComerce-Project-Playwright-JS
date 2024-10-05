@@ -31,6 +31,10 @@ class CartPage {
         this.checkoutMultipleAddresses = page.locator('.method-checkout-cart-methods-multishipping')
     }
 
+    async getFirstProductName() {
+       let productName =  await this.allProductsInCart.first().locator('h2 a').textContent();
+       return productName;
+    }
     async changeProductQty(nameOfProduct, qty) {
         try {
             let currentRow;

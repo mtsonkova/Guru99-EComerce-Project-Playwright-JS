@@ -257,7 +257,32 @@ describe('End to End Tests', async () => {
               } 
              await expect(hasOrder).toBeTruthy();
         })
+        
+        test.only('Change product qty by using reorder option', async() => {
+            await headerNav.clickOnAccount();
+            await headerNav.clickOnLogIn();
+            await page.waitForURL('http://live.techpanda.org/index.php/customer/account/login/');
 
-    });
+            let logInUser = new LoginPage(page);
+            await logInUser.loginWithValidCredentials('samgreen@test.qa', 'password');
+            await page.getByRole('link', { name: 'MY ORDERS' }).click();
+            let orderTotalBeforeChange = orders.getFirstOrderTotal();
+            let orderIdBeforeChange = orders.getFirstOrderId();
+            await orders.clickOnReorder();
 
+            let firstProductName = cartPage.getFirstProductName();
+            await cartPage.changeProductQty(firstProductName, '10');
+            await cartPage.clickOnProceedToCheckoutBtn();
+            await checkoutPage.checkoutAsLoggedInUser();
+            await page.waitForURL('http://live.techpanda.org/index.php/checkout/onepage/success/');
+            await page.getByRole('link', { name: 'MY ORDERS' }).click();
+            let orderTotalAfterChange = orders.getFirstOrderTotal();
+            let orderIdAfterChange = orders.getFirstOrderId();
+
+            await expect(orderIdBeforeChange).not.toEqual(orderIdAfterChange);
+            await expect(orderTotalBeforeChange).not.toEqual(orderTotalAfterChange);
+
+
+        })
+    });    
 });

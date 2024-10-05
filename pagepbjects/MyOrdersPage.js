@@ -12,11 +12,23 @@ class MyOrdersPage{
 
         //#my-orders-table > tbody > tr.first.odd > td.a-center.view.last > span > a:nth-child(1)
     }
-
+   
     async clickOnReorder() {
         let firstRow = await this.tableRows.first();
-        let lastCell = await firstRow.locator('td:nth-last-child');
-        await lastCell.locator('a').nth(1).click();
+        let lastCell = await firstRow.locator('a:has-text("REORDER")');
+        await lastCell.click();
+    }
+
+    async getFirstOrderTotal(){
+        let firstRow = await this.tableRows.first();
+        let orderTotal = await firstRow.locator('td:nth-child(4)').textContent();
+        return orderTotal;
+    }
+
+    async getFirstOrderId() {
+        let firstRow = await this.tableRows.first();
+        let firstOrderId = await firstRow.locator('td:nth-child(1)').textContent();
+        return firstOrderId;
     }
 }
 
