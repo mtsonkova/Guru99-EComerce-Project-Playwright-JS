@@ -270,19 +270,18 @@ describe('End to End Tests', async () => {
             let orderIdBeforeChange = await orders.getFirstOrderId();
             await orders.clickOnReorder();
 
-            let firstProductName = cartPage.getFirstProductName();
+            let firstProductName = await cartPage.getFirstProductName();
             await cartPage.changeProductQty(firstProductName, '10');
             await cartPage.clickOnProceedToCheckoutBtn();
             await checkoutPage.checkoutAsLoggedInUser();
             await page.waitForURL('http://live.techpanda.org/index.php/checkout/onepage/success/');
+            let orderIdAfterChange = await page.locator('.col-main p a').first().textContent();
             await page.click('.col-main p a:nth-child(1)');
-            let orderTotalAfterChange = await orders.getFirstOrderTotal();
-            let orderIdAfterChange = await orders.getFirstOrderId();
-
-            await expect(orderIdBeforeChange).not.toEqual(orderIdAfterChange);
-            await expect(orderTotalBeforeChange).not.toEqual(orderTotalAfterChange);
-
-
+           
+            let orderTotalAfterChange = await page.locator('tr.grand_total td span').textContent();
+          
+            await expect(orderIdBeforeChange === orderIdAfterChange).toBeFalsy();
+            await expect(orderTotalBeforeChange === orderTotalAfterChange).toBeFalsy();
         })
     });    
 });
