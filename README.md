@@ -59,8 +59,7 @@ Test Constraints. When the Print Order link is selected a new browser tab opens,
 Converted page to pdf is saved in the Downloads folder in the project. - **done**
 
 ![Testcase-v8](https://github.com/user-attachments/assets/5d730a76-dab1-4310-ba91-1b456a4bc563)
-This test case will be automated as is with one addition -> check what happens with the old order: whether it is canceled or deleted as this test case does not state what is expected to happen to it.
-
+This test case will be automated as is. - **done**
 ![Testcase-v9](https://github.com/user-attachments/assets/1479496a-6526-45c9-97d4-82ed76862c0b)
 This test case will not be automated because the given discount is not deducted from the final price as seen in the screenshot below:
 
