@@ -18,10 +18,6 @@ The purpose of this project is to perform E2E test automation for the [Guru99 EC
 **Out of scope:**
 
 -API
-- Backend UI -> backend login details:
- http://live.techpanda.org/index.php/backendlogin/
- - id = user01
- - pass = guru99com
 -Credit card payment as it does not work
 - register new account section. All tests will be automated with already created account.
 
@@ -29,7 +25,6 @@ The purpose of this project is to perform E2E test automation for the [Guru99 EC
 
 
 **Test cases to automate:**
- - Manual test cases authored by me.
  - Test cases, provided by Guru99 as part of their timeboxed live project demo.
 
 ## Test cases, provided by Guru99
